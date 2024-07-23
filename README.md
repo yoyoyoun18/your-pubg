@@ -10,14 +10,14 @@
 
 #### Tech Stack
 
-- Next.js
-- Tailwind css
-- Redux Toolkit
-- Mongo DB
-- Docker
-- EC2
-- Vercel(?)
-- Tanstack Query
+![Next.js](https://img.shields.io/badge/-Next.js-000000?style=flat&logo=Next.js&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-38B2AC?style=flat&logo=Tailwind-CSS&logoColor=white)
+![Redux Toolkit](https://img.shields.io/badge/-Redux%20Toolkit-764ABC?style=flat&logo=Redux&logoColor=white)
+![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?style=flat&logo=MongoDB&logoColor=white)
+![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat&logo=Docker&logoColor=white)
+![EC2](https://img.shields.io/badge/-EC2-FF9900?style=flat&logo=Amazon-EC2&logoColor=white)
+![Vercel](https://img.shields.io/badge/-Vercel-000000?style=flat&logo=Vercel&logoColor=white)
+![Tanstack Query](https://img.shields.io/badge/-Tanstack%20Query-FF4154?style=flat&logo=React-Query&logoColor=white)
 
 ---
 
