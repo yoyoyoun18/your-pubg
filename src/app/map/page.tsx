@@ -26,7 +26,7 @@ function Page() {
             <li
               key={index}
               id={`${index}`}
-              className={`cursor-pointer p-2 md:p-3 items-center ${
+              className={`hover:border-b hover:border-black transition-transform duration-200 cursor-pointer p-2 md:p-3 items-center ${
                 focus === index
                   ? "border-b border-black"
                   : "border-b border-gray-200"
