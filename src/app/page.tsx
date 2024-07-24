@@ -32,7 +32,7 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div >
       <InputContainer />
       <div className="flex flex-col lg:flex-row justify-center items-center bg-[#EAEAEA] h-auto p-8 w-auto">
         <div className="h-160 bg-white text-black w-80 mr-0 lg:mr-4 shadow-md mb-4 lg:mb-0 p-4">
