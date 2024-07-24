@@ -14,6 +14,10 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "main-container-img":
           "url('https://kimyoungjoforum1557.s3.ap-northeast-2.amazonaws.com/pubg-battlegrounds-rondo-map-1-1920x1080-3e95b77f1f14.png')",
+        "latest-patch-thumbnail-1":
+          "url('https://wstatic-prod-boc.krafton.com/common/content/news/20240708/Pc8FtroI_thumb.jpg')",
+        "latest-patch-thumbnail-2":
+          "url('https://wstatic-prod-boc.krafton.com/common/content/news/20240610/gwFclfBS_thumb.jpg')",
       },
       height: {
         "100": "25rem", // h-100 클래스로 사용 가능
