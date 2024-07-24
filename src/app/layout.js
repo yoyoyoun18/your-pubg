@@ -1,4 +1,3 @@
-// app/layout.js
 import "./globals.css";
 
 export const metadata = {
@@ -11,11 +10,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Spoqa+Han+Sans+Neo:wght@400;700&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="font-sans">{children}</body>
+      <body className="font-SBAggro">{children}</body>
     </html>
   );
 }

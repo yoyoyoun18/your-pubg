@@ -9,7 +9,18 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Noto Sans KR", "sans-serif"],
+        sans: [
+          "Spoqa Han Sans Neo",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "Noto Sans",
+          "sans-serif",
+        ],
+        SBAggro: ["SBAggro"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -21,6 +32,8 @@ const config: Config = {
           "url('https://wstatic-prod-boc.krafton.com/common/content/news/20240708/Pc8FtroI_thumb.jpg')",
         "latest-patch-thumbnail-2":
           "url('https://wstatic-prod-boc.krafton.com/common/content/news/20240610/gwFclfBS_thumb.jpg')",
+        "ernagel-map":
+          "url('https://wstatic-prod.pubg.com/web/live/main_c2240d2/img/9b5d63e.jpg')",
       },
       height: {
         "100": "25rem", // h-100 클래스로 사용 가능

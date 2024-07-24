@@ -32,11 +32,11 @@ export default function Home() {
   };
 
   return (
-    <div >
+    <div className=" ">
       <InputContainer />
       <div className="flex flex-col lg:flex-row justify-center items-center bg-[#EAEAEA] h-auto p-8 w-auto">
         <div className="h-160 bg-white text-black w-80 mr-0 lg:mr-4 shadow-md mb-4 lg:mb-0 p-4">
-          <div className="font-bold mb-4">리더보드</div>
+          <div className="font-bold mb-4 ">리더보드</div>
           <div className="relative w-full">
             <div
               className="flex w-full p-2 justify-between border items-center cursor-pointer"

@@ -5,7 +5,7 @@ import React from "react";
 
 function page() {
   return (
-    <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start bg-[#EAEAEA] h-auto p-8 w-auto">
+    <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start bg-[#EAEAEA] h-auto p-8 w-auto font-SBAggro">
       <div className="flex flex-col ">
         <RecentPatchContainer />
         <RecentPatchContainer />
