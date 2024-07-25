@@ -3,18 +3,17 @@
 import React, { ReactNode } from "react";
 import "../styles/globals.css"; // 글로벌 스타일 시트
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-
+import { usePathname, useRouter } from "next/navigation";
 interface RootLayoutProps {
   children: ReactNode;
 }
 
 const RootLayout = ({ children }: RootLayoutProps) => {
+  const pathname = usePathname();
   const router = useRouter();
 
-  const handleLoginClick = () => {
-    router.push("/accounts/login");
-  };
+  // accounts 경로인지 확인
+  const isAccountsPath = pathname.startsWith("/accounts");
 
   return (
     <html lang="en" className="bg-[#1c1c1f] text-white w-full h-full  ">
@@ -24,30 +23,32 @@ const RootLayout = ({ children }: RootLayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="flex flex-col min-h-screen ">
-        <nav className="flex justify-between bg-[#1c1c1f] h-11 w-full items-center px-4">
-          <ul className="flex flex-row space-x-4 items-center font-SBAggro">
-            <li className="p-4 font-bold">
-              <Link href="/">YOUR.PUBG</Link>
-            </li>
-            <li>
-              <Link href="/patch">패치 노트</Link>
-            </li>
-            <li>
-              <Link href="/map">맵</Link>
-            </li>
-            <li>
-              <Link href="/item">아이템 정보</Link>
-            </li>
-          </ul>
-          <div className="ml-auto">
-            <button
-              onClick={handleLoginClick}
-              className="bg-[#424254] text-white py-2 px-4 rounded font-SBAggro"
-            >
-              로그인
-            </button>
-          </div>
-        </nav>
+        {!isAccountsPath && (
+          <nav className="flex justify-between bg-[#1c1c1f] h-11 w-full items-center px-4">
+            <ul className="flex flex-row space-x-4 items-center font-SBAggro">
+              <li className="p-4 font-bold">
+                <Link href="/">YOUR.PUBG</Link>
+              </li>
+              <li>
+                <Link href="/patch">패치 노트</Link>
+              </li>
+              <li>
+                <Link href="/map">맵</Link>
+              </li>
+              <li>
+                <Link href="/item">아이템 정보</Link>
+              </li>
+            </ul>
+            <div className="ml-auto">
+              <button
+                onClick={() => router.push("/accounts/login")}
+                className="bg-[#424254] text-white py-2 px-4 rounded font-SBAggro"
+              >
+                로그인
+              </button>
+            </div>
+          </nav>
+        )}
         <main className="flex-grow">{children}</main>
       </body>
     </html>
