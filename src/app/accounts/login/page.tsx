@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
 
-function page() {
+import React from "react";
+import { signIn } from "next-auth/react";
+
+function LoginPage() {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gray-900 text-gray-200">
       <div className="absolute top-8 left-8 text-2xl font-bold">
@@ -35,17 +38,15 @@ function page() {
         </div>
         <div className="text-center mb-4">OR</div>
         <div className="flex justify-center space-x-4">
-          <button className="bg-gray-700 hover:bg-gray-600 p-3 rounded-full">
-            <img src="/apple-icon.png" alt="Apple" className="w-6 h-6" />
+          <button
+            onClick={() => signIn("kakao")}
+            className="bg-yellow-500 hover:bg-yellow-600 p-3 rounded-full"
+          >
           </button>
-          <button className="bg-gray-700 hover:bg-gray-600 p-3 rounded-full">
-            <img src="/google-icon.png" alt="Google" className="w-6 h-6" />
-          </button>
-          <button className="bg-gray-700 hover:bg-gray-600 p-3 rounded-full">
-            <img src="/facebook-icon.png" alt="Facebook" className="w-6 h-6" />
-          </button>
-          <button className="bg-gray-700 hover:bg-gray-600 p-3 rounded-full">
-            <img src="/discord-icon.png" alt="Discord" className="w-6 h-6" />
+          <button
+            onClick={() => signIn("facebook")}
+            className="bg-blue-800 hover:bg-blue-900 p-3 rounded-full"
+          >
           </button>
         </div>
         <div className="mt-6 text-center">
@@ -69,4 +70,4 @@ function page() {
   );
 }
 
-export default page;
+export default LoginPage;
