@@ -2,7 +2,6 @@
 
 import InputContainer from "@/components/InputContainer";
 import Leaderboard from "@/components/Leaderboard";
-import Profile from "@/components/Profile";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 

@@ -38,7 +38,7 @@ function Page() {
           ))}
         </ul>
         <div className="flex justify-center items-center bg-[#EAEAEA]">
-          <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start bg-[#EAEAEA] w-[350px] h-[350px] md:w-[500px] md:h-[500px] lg:w-[1000px] lg:h-[1000px] bg-ernagel-map bg-center bg-cover bg-no-repeat mt-4"></div>
+          <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start bg-[#EAEAEA] w-[350px] h-[350px] md:w-[500px] md:h-[500px] lg:w-[1000px] lg:h-[1000px] bg-ernagel-map bg-center bg-cover bg-no-repeat mt-4 animate-scale-up-ver-top"></div>
         </div>
 
         <div className="flex justify-center font-bold text-black mt-20 text-2xl md:text-5xl">

@@ -1,6 +1,15 @@
-import React from "react";
+"use client";
+
+import useSearchStore from "@/store/searchStore";
+import React, { useState } from "react";
 
 function InputContainer() {
+  const [input, setInput] = useState("");
+  const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
+
+  const handleSearch = () => {
+    setSearchQuery(input);
+  };
   return (
     <div className="w-full h-96 bg-main-container-img bg-center bg-cover bg-no-repeat flex flex-col items-center justify-between">
       <div className="flex-grow flex items-center">
@@ -13,10 +22,15 @@ function InputContainer() {
         <div className="relative shadow-md">
           <input
             type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
             className="rounded-l border border-gray-300 p-2 rounded w-96 text-black"
             placeholder="닉네임을 입력해주세요."
           />
-          <button className="absolute right-0 top-0 h-full px-4 bg-[#EBB014] text-white rounded-r">
+          <button
+            onClick={handleSearch}
+            className="absolute right-0 top-0 h-full px-4 bg-[#EBB014] text-white rounded-r"
+          >
             검색
           </button>
         </div>

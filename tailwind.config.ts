@@ -75,10 +75,24 @@ const config: Config = {
             opacity: "1",
           },
         },
+        "scale-up-ver-top": {
+          "0%": {
+            transform: "scale(0.5)",
+            "transform-origin": "50% 0%",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "scale(1)",
+            "transform-origin": "50% 0%",
+            opacity: "1",
+          },
+        },
       },
       animation: {
         "tracking-in-contract-bck":
           "tracking-in-contract-bck 1s cubic-bezier(.215,.61,.355,1.000) both",
+        "scale-up-ver-top":
+          "scale-up-ver-top 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both",
       },
     },
   },
