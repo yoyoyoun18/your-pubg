@@ -6,10 +6,29 @@ import React, { useState } from "react";
 function InputContainer() {
   const [input, setInput] = useState("");
   const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
+  const setSearchResults = useSearchStore((state) => state.setSearchResults);
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     setSearchQuery(input);
+    try {
+      const response = await fetch(
+        `/api/pubg/player?platform=steam&playerName=${input}`
+      );
+      if (!response.ok) {
+        throw new Error("Player data not found");
+      }
+      const data = await response.json();
+      setSearchResults(data);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error:", error.message);
+      } else {
+        console.error("Unknown error");
+      }
+      setSearchResults(null);
+    }
   };
+
   return (
     <div className="w-full h-96 bg-main-container-img bg-center bg-cover bg-no-repeat flex flex-col items-center justify-between">
       <div className="flex-grow flex items-center">
