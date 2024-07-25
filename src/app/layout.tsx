@@ -6,7 +6,7 @@ import React, { ReactNode } from "react";
 import "../styles/globals.css"; // 글로벌 스타일 시트
 import { usePathname } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
-import Navbar from "@/components/Navbar";
+import Navbar from "./../components/Navbar";
 
 interface RootLayoutProps {
   children: ReactNode;
