@@ -61,6 +61,25 @@ const config: Config = {
         "192": "48rem", // h-192 클래스로 사용 가능
         "256": "64rem", // h-256 클래스로 사용 가능
       },
+      keyframes: {
+        "tracking-in-contract-bck": {
+          "0%": {
+            "letter-spacing": "1em",
+            opacity: "0",
+          },
+          "40%": {
+            opacity: "0.6",
+          },
+          "100%": {
+            "letter-spacing": "normal",
+            opacity: "1",
+          },
+        },
+      },
+      animation: {
+        "tracking-in-contract-bck":
+          "tracking-in-contract-bck 1s cubic-bezier(.215,.61,.355,1.000) both",
+      },
     },
   },
   plugins: [],

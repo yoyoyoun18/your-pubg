@@ -4,7 +4,9 @@ function InputContainer() {
   return (
     <div className="w-full h-96 bg-main-container-img bg-center bg-cover bg-no-repeat flex flex-col items-center justify-between">
       <div className="flex-grow flex items-center">
-        <div className="font-bold text-6xl text-black">YOUR.PUBG</div>
+        <div className="font-bold text-6xl text-black animate-tracking-in-contract-bck">
+          YOUR.PUBG
+        </div>
         {/*로고 이미지 제작 예정*/}
       </div>
       <div className="w-full flex justify-center mb-4 ">
