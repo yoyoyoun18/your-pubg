@@ -2,33 +2,17 @@
 
 import InputContainer from "@/components/InputContainer";
 import Leaderboard from "@/components/Leaderboard";
+import SquadSoloSelector from "@/components/SquadSoloSelector";
+import SteamKakaoSelector from "@/components/SteamKakaoSelector";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 
 export default function Home() {
   const [steamKakaoDropMenu, setSteamKakaoDropMenu] = useState("hidden");
   const [steamOrKakao, setSteamOrKakao] = useState("Steam");
-  const [squad, setSquad] = useState("bg-[#EBB014] text-white");
-  const [solo, setSolo] = useState("");
 
   const handlingDropMenu = () => {
     setSteamKakaoDropMenu((prev) => (prev === "hidden" ? "block" : "hidden"));
-  };
-
-  const handleSquadClick = () => {
-    setSquad((prevState) =>
-      prevState === "" ? "bg-[#EBB014] text-white" : ""
-    );
-    if (solo !== "") {
-      setSolo("");
-    }
-  };
-
-  const handleSoloClick = () => {
-    setSolo((prevState) => (prevState === "" ? "bg-[#EBB014] text-white" : ""));
-    if (squad !== "") {
-      setSquad("");
-    }
   };
 
   return (
@@ -37,54 +21,8 @@ export default function Home() {
       <div className="flex flex-col lg:flex-row justify-center items-center bg-[#EAEAEA] h-auto p-8 w-auto">
         <div className="h-160 bg-white text-black w-80 mr-0 lg:mr-4 shadow-md mb-4 lg:mb-0 p-4">
           <div className="font-bold mb-4 ">리더보드</div>
-
-          <div className="relative w-full">
-            <div
-              className="flex w-full p-2 justify-between border items-center cursor-pointer"
-              onClick={handlingDropMenu}
-            >
-              <span>{steamOrKakao}</span>
-              <span className="ml-2 h-5 w-5 text-gray-500">
-                <ChevronDownIcon />
-              </span>
-            </div>
-            <div
-              className={`absolute w-full ${steamKakaoDropMenu} bg-white z-10 border mt-1`}
-            >
-              <div
-                className="flex w-full p-2 justify-between items-center cursor-pointer"
-                onClick={() => {
-                  setSteamOrKakao("Steam");
-                  handlingDropMenu();
-                }}
-              >
-                <span>Steam</span>
-              </div>
-              <div
-                className="flex w-full p-2 justify-between items-center cursor-pointer"
-                onClick={() => {
-                  setSteamOrKakao("Kakao");
-                  handlingDropMenu();
-                }}
-              >
-                <span>Kakao</span>
-              </div>
-            </div>
-          </div>
-          <div className="flex w-full border mb-4 mt-4">
-            <div
-              className={`w-1/2 flex justify-center items-center ${squad} border-r p-1 cursor-pointer`}
-              onClick={handleSquadClick}
-            >
-              경쟁전
-            </div>
-            <div
-              className={`w-1/2 flex justify-center items-center ${solo} p-1 cursor-pointer`}
-              onClick={handleSoloClick}
-            >
-              경쟁전 솔로
-            </div>
-          </div>
+          <SteamKakaoSelector />
+          <SquadSoloSelector />
           <Leaderboard />
         </div>
         <div className="h-160 bg-white text-black w-80 mt-4 md:mt-0 md:w-160 shadow-md">
