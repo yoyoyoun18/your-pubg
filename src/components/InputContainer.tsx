@@ -1,10 +1,11 @@
 "use client";
 
 import useSearchStore from "@/store/searchStore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function InputContainer() {
   const [input, setInput] = useState("");
+  const searchResult = useSearchStore((state) => state.searchResults);
   const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
   const setSearchResults = useSearchStore((state) => state.setSearchResults);
 
@@ -28,6 +29,10 @@ function InputContainer() {
       setSearchResults(null);
     }
   };
+
+  useEffect(() => {
+    console.log(searchResult);
+  }, [searchResult]);
 
   return (
     <div className="w-full h-96 bg-main-container-img bg-center bg-cover bg-no-repeat flex flex-col items-center justify-between">
