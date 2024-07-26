@@ -1,79 +1,23 @@
 "use client";
-import React from "react";
+import { useTopPlayers } from "@/app/hooks/useTopPlayers";
+import React, { useEffect } from "react";
 
 const Leaderboard = () => {
-  const leaderboardData = [
-    {
-      rank: 1,
-      nickname: "91_PD",
-      rating: 4812,
-      win: 167,
-      link: "https://pubg.op.gg/user/91_PD",
-    },
-    {
-      rank: 2,
-      nickname: "Xiao_Sxxng",
-      rating: 4725,
-      win: 178,
-      link: "https://pubg.op.gg/user/Xiao_Sxxng",
-    },
-    {
-      rank: 3,
-      nickname: "Mr-Huang-0516",
-      rating: 4673,
-      win: 182,
-      link: "https://pubg.op.gg/user/Mr-Huang-0516",
-    },
-    {
-      rank: 4,
-      nickname: "DaguiTouA",
-      rating: 4543,
-      win: 104,
-      link: "https://pubg.op.gg/user/DaguiTouA",
-    },
-    {
-      rank: 5,
-      nickname: "97xl_-",
-      rating: 4528,
-      win: 287,
-      link: "https://pubg.op.gg/user/97xl_-",
-    },
-    {
-      rank: 6,
-      nickname: "MarTha_KongBai",
-      rating: 4503,
-      win: 176,
-      link: "https://pubg.op.gg/user/MarTha_KongBai",
-    },
-    {
-      rank: 7,
-      nickname: "ized_-",
-      rating: 4495,
-      win: 135,
-      link: "https://pubg.op.gg/user/ized_-",
-    },
-    {
-      rank: 8,
-      nickname: "GuoZzz14",
-      rating: 4430,
-      win: 1779,
-      link: "https://pubg.op.gg/user/GuoZzz14",
-    },
-    {
-      rank: 9,
-      nickname: "ZIZON-WonE-",
-      rating: 4423,
-      win: 189,
-      link: "https://pubg.op.gg/user/ZIZON-WonE-",
-    },
-    {
-      rank: 10,
-      nickname: "kkove1",
-      rating: 4409,
-      win: 317,
-      link: "https://pubg.op.gg/user/kkove1",
-    },
-  ];
+  const {
+    data: topPlayersSteam,
+    isLoading: isLoadingSteam,
+    error: errorSteam,
+  } = useTopPlayers("steam", "asia");
+
+  const {
+    data: topPlayersKakao,
+    isLoading: isLoadingKakao,
+    error: errorKakao,
+  } = useTopPlayers("kakao", "asia");
+
+  if (isLoadingSteam || isLoadingKakao) return <p>Loading...</p>;
+  if (errorSteam) return <p>Error: {errorSteam.message}</p>;
+  if (errorKakao) return <p>Error: {errorKakao.message}</p>;
 
   return (
     <div className="bg-gray-100 flex items-center justify-center text-xs">
@@ -87,19 +31,43 @@ const Leaderboard = () => {
           </div>
         </div>
         <ul className="divide-y divide-gray-200">
-          {leaderboardData.map((player, index) => (
+          {topPlayersSteam?.map((player, index) => (
             <li
               key={index}
               className="grid grid-cols-12 gap-4 p-3 items-center"
             >
-              <div className="col-span-2 text-center">{player.rank}</div>
+              <div className="col-span-2 text-center">{index + 1}</div>
               <div className="col-span-5">
-                <a href={player.link} className="text-blue-500 hover:underline">
-                  {player.nickname}
+                <a
+                  href={`https://pubg.op.gg/user/${player.name}`}
+                  className="text-blue-500 hover:underline"
+                >
+                  {player.name}
                 </a>
               </div>
-              <div className="col-span-2 text-center">{player.rating}</div>
-              <div className="col-span-3 text-center">{player.win}</div>
+              <div className="col-span-2 text-center">{player.rankPoint}</div>
+              <div className="col-span-3 text-center">{player.matchCount}</div>
+            </li>
+          ))}
+        </ul>
+        <h2 className="text-center mt-6">Kakao - Asia</h2>
+        <ul className="divide-y divide-gray-200">
+          {topPlayersKakao?.map((player, index) => (
+            <li
+              key={index}
+              className="grid grid-cols-12 gap-4 p-3 items-center"
+            >
+              <div className="col-span-2 text-center">{index + 1}</div>
+              <div className="col-span-5">
+                <a
+                  href={`https://pubg.op.gg/user/${player.name}`}
+                  className="text-blue-500 hover:underline"
+                >
+                  {player.name}
+                </a>
+              </div>
+              <div className="col-span-2 text-center">{player.rankPoint}</div>
+              <div className="col-span-3 text-center">{player.matchCount}</div>
             </li>
           ))}
         </ul>

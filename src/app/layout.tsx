@@ -7,6 +7,7 @@ import "../styles/globals.css"; // 글로벌 스타일 시트
 import { usePathname } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
 import Navbar from "./../components/Navbar";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -14,6 +15,7 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   const pathname = usePathname();
+  const queryClient = new QueryClient();
 
   // accounts 경로인지 확인
   const isAccountsPath = pathname.startsWith("/accounts");
@@ -26,10 +28,12 @@ const RootLayout = ({ children }: RootLayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="flex flex-col min-h-screen">
-        <SessionProvider>
-          {!isAccountsPath && <Navbar />}
-          <main className="flex-grow">{children}</main>
-        </SessionProvider>
+        <QueryClientProvider client={queryClient}>
+          <SessionProvider>
+            {!isAccountsPath && <Navbar />}
+            <main className="flex-grow">{children}</main>
+          </SessionProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );

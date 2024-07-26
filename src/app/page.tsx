@@ -5,17 +5,9 @@ import InputContainer from "@/components/InputContainer";
 import Leaderboard from "@/components/Leaderboard";
 import SquadSoloSelector from "@/components/SquadSoloSelector";
 import SteamKakaoSelector from "@/components/SteamKakaoSelector";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import React, { useState } from "react";
+import React from "react";
 
 export default function Home() {
-  const [steamKakaoDropMenu, setSteamKakaoDropMenu] = useState("hidden");
-  const [steamOrKakao, setSteamOrKakao] = useState("Steam");
-
-  const handlingDropMenu = () => {
-    setSteamKakaoDropMenu((prev) => (prev === "hidden" ? "block" : "hidden"));
-  };
-
   return (
     <div className=" ">
       <InputContainer />
