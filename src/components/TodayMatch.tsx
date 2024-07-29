@@ -58,8 +58,8 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
 
   return (
     <div className="flex flex-row items-center p-4 h-full w-[487px] justify-center">
-      <div className="bg-white shadow-md w-full max-w-4xl h-full flex flex-col justify-center items-center">
-        <div className="bg-white rounded-lg mb-4 w-full p-4">
+      <div className="bg-white shadow-md w-full max-w-4xl h-auto flex flex-col justify-center items-center">
+        <div className="bg-white h-full w-full p-4">
           <div className="flex items-center justify-between mb-2">
             {team1Logo ? (
               <img
