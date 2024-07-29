@@ -53,7 +53,7 @@ function InputContainer() {
           />
           <button
             onClick={handleSearch}
-            className="absolute right-0 top-0 h-full px-4 bg-[#EBB014] text-white rounded-r"
+            className="absolute right-0 top-0 h-full px-4 bg-[#5383E8] text-white rounded-r"
           >
             검색
           </button>

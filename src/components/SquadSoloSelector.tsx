@@ -3,12 +3,12 @@
 import React, { useState } from "react";
 
 function SquadSoloSelector() {
-  const [squad, setSquad] = useState("bg-[#EBB014] text-white");
+  const [squad, setSquad] = useState("bg-[#5383E8] text-white");
   const [solo, setSolo] = useState("");
 
   const handleSquadClick = () => {
     setSquad((prevState) =>
-      prevState === "" ? "bg-[#EBB014] text-white" : ""
+      prevState === "" ? "bg-[#5383E8] text-white" : ""
     );
     if (solo !== "") {
       setSolo("");
@@ -16,7 +16,7 @@ function SquadSoloSelector() {
   };
 
   const handleSoloClick = () => {
-    setSolo((prevState) => (prevState === "" ? "bg-[#EBB014] text-white" : ""));
+    setSolo((prevState) => (prevState === "" ? "bg-[#5383E8] text-white" : ""));
     if (squad !== "") {
       setSquad("");
     }
