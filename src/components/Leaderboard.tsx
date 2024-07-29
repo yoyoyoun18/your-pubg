@@ -77,9 +77,9 @@ const Leaderboard = () => {
 
   return (
     <div className="bg-gray-100 flex items-center justify-center text-xs">
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl">
-        <div className="bg-gray-200 p-2">
-          <div className="grid grid-cols-12 gap-4">
+      <div className="bg-white shadow-lg overflow-hidden w-full max-w-4xl">
+        <div className="bg-[#5383E8] p-2">
+          <div className="grid grid-cols-12 gap-4 text-white">
             <div className="font-bold col-span-2">순위</div>
             <div className="font-bold col-span-5">닉네임</div>
             <div className="font-bold col-span-2">RP</div>
