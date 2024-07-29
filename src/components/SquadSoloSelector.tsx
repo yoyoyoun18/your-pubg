@@ -28,13 +28,13 @@ function SquadSoloSelector() {
         className={`w-1/2 flex justify-center items-center ${squad} border-r p-1 cursor-pointer`}
         onClick={handleSquadClick}
       >
-        경쟁전
+        솔로 랭크
       </div>
       <div
         className={`w-1/2 flex justify-center items-center ${solo} p-1 cursor-pointer`}
         onClick={handleSoloClick}
       >
-        경쟁전 솔로
+        자유 랭크
       </div>
     </div>
   );

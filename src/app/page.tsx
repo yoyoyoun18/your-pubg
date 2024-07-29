@@ -4,7 +4,6 @@ import BookMarkList from "@/components/BookMarkList";
 import InputContainer from "@/components/InputContainer";
 import Leaderboard from "@/components/Leaderboard";
 import SquadSoloSelector from "@/components/SquadSoloSelector";
-import SteamKakaoSelector from "@/components/SteamKakaoSelector";
 import React from "react";
 
 export default function Home() {
