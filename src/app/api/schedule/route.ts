@@ -40,33 +40,20 @@ export async function GET() {
       );
       return matchDate.format("MM월 DD일 (dd)") === today;
     });
-    console.log("Today Match:", todayMatch);
 
     if (!todayMatch) {
       // 가장 가까운 다음 경기 찾기
       const upcomingMatches = schedule.filter((match) => {
         const matchDate = dayjs(match.date, "MM월 DD일 (dd)");
-        console.log(
-          `Upcoming match date: ${match.date} -> ${matchDate.format(
-            "MM월 DD일 (dd)"
-          )}`
-        );
         return matchDate.isAfter(now);
       });
-      console.log("Upcoming Matches:", upcomingMatches);
 
       if (upcomingMatches.length > 0) {
         todayMatch = upcomingMatches.reduce((closest, match) => {
           const matchDate = dayjs(match.date, "MM월 DD일 (dd)");
           const closestDate = dayjs(closest.date, "MM월 DD일 (dd)");
-          console.log(
-            `Comparing dates: ${matchDate.format(
-              "MM월 DD일 (dd)"
-            )} < ${closestDate.format("MM월 DD일 (dd)")}`
-          );
           return matchDate.isBefore(closestDate) ? match : closest;
         });
-        console.log("Next Match:", todayMatch);
       }
     }
 
