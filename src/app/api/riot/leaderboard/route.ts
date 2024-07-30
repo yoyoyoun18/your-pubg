@@ -13,8 +13,8 @@ if (!apiKey) {
   throw new Error("API key is missing");
 }
 
-// summonerId로 puuid를 가져오는 함수
-const fetchSummonerPuuid = async (summonerId: string) => {
+// summonerId로 puuid와 summonerName을 가져오는 함수
+const fetchSummonerPuuidAndName = async (summonerId: string) => {
   try {
     const response = await axios.get(
       `${RIOT_API_URL}/summoner/v4/summoners/${summonerId}`,
@@ -24,13 +24,14 @@ const fetchSummonerPuuid = async (summonerId: string) => {
         },
       }
     );
-    return response.data.puuid;
+    const { puuid, name } = response.data;
+    return { puuid, name };
   } catch (error: any) {
     console.error(
-      `Error fetching puuid for summoner ID ${summonerId}:`,
+      `Error fetching puuid and name for summoner ID ${summonerId}:`,
       error.message
     );
-    return null;
+    return { puuid: null, name: null };
   }
 };
 
@@ -45,7 +46,6 @@ const fetchSummonerName = async (puuid: string) => {
         },
       }
     );
-    console.log(response.data.gameName);
     return response.data.gameName; // Riot ID의 이름 부분
   } catch (error: any) {
     console.error(
@@ -76,8 +76,10 @@ export async function GET() {
     // 각 소환사의 puuid와 summonerName을 비동기적으로 가져옴
     const entriesWithNames = await Promise.all(
       topTenEntries.map(async (entry: any) => {
-        const puuid = await fetchSummonerPuuid(entry.summonerId);
-        const summonerName = puuid ? await fetchSummonerName(puuid) : null;
+        const { puuid, name } = await fetchSummonerPuuidAndName(
+          entry.summonerId
+        );
+        const summonerName = puuid ? await fetchSummonerName(puuid) : name;
         return { ...entry, summonerName };
       })
     );

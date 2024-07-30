@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 
 const Leaderboard = () => {
   const leaderboardData = [
@@ -74,6 +75,17 @@ const Leaderboard = () => {
       link: "https://pubg.op.gg/user/kkove1",
     },
   ];
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/riot/leaderboard")
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+  }, []);
 
   return (
     <div className="bg-gray-100 flex items-center justify-center text-xs">
