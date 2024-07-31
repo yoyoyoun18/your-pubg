@@ -27,17 +27,14 @@ export async function GET() {
     const today = dayjs().format("MM월 DD일 (dd)");
     const now = dayjs();
 
-    console.log("Today:", today);
-    console.log("Schedule:", schedule);
-
     // 오늘의 경기 찾기
     let todayMatch = schedule.find((match) => {
       const matchDate = dayjs(match.date, "MM월 DD일 (dd)");
-      console.log(
-        `Checking match date: ${match.date} -> ${matchDate.format(
-          "MM월 DD일 (dd)"
-        )}`
-      );
+      // console.log(
+      //   `Checking match date: ${match.date} -> ${matchDate.format(
+      //     "MM월 DD일 (dd)"
+      //   )}`
+      // );
       return matchDate.format("MM월 DD일 (dd)") === today;
     });
 
