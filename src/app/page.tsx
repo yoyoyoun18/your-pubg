@@ -5,9 +5,20 @@ import InputContainer from "@/components/InputContainer";
 import Leaderboard from "@/components/Leaderboard";
 import SquadSoloSelector from "@/components/SquadSoloSelector";
 import TodayMatch from "@/components/TodayMatch";
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/riot/leaderboard")
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+  }, []);
   return (
     <div>
       <InputContainer />
