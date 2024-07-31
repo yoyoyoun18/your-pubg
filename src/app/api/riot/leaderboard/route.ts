@@ -1,5 +1,6 @@
-import axios from "axios";
+// app/api/leaderboard/route.ts
 import { NextResponse } from "next/server";
+import axios from "axios";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -12,44 +13,39 @@ if (!apiKey) {
   throw new Error("API key is missing");
 }
 
-// Helper function to add delay
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export async function GET() {
   try {
-    // 1. Fetch challenger league data
     const response = await axios.get(
       `${RIOT_API_URL}/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5`,
       {
         headers: {
-          "X-Riot-Token": apiKey!,
+          "X-Riot-Token": apiKey,
         },
       }
     );
 
-    // Sort and get top 10 entries
     const sortedEntries = response.data.entries
       .sort((a: any, b: any) => b.leaguePoints - a.leaguePoints)
       .slice(0, 10);
 
-    // 2. Fetch summoner data for top 10 players
     const summonerPromises = sortedEntries.map((entry: any) =>
       axios.get(`${RIOT_API_URL}/summoner/v4/summoners/${entry.summonerId}`, {
         headers: {
-          "X-Riot-Token": apiKey!,
+          "X-Riot-Token": apiKey,
         },
       })
     );
 
     const summonerResponses = await Promise.all(summonerPromises);
 
-    // 3. Fetch Riot IDs for top 10 players
     const riotIdPromises = summonerResponses.map((summonerResponse) =>
       axios.get(
         `${RIOT_ACCOUNT_API_URL}/account/v1/accounts/by-puuid/${summonerResponse.data.puuid}`,
         {
           headers: {
-            "X-Riot-Token": apiKey!,
+            "X-Riot-Token": apiKey,
           },
         }
       )
@@ -57,14 +53,12 @@ export async function GET() {
 
     const riotIdResponses = await Promise.all(riotIdPromises);
 
-    // Combine all data
     const entriesWithNames = sortedEntries.map((entry: any, index: number) => ({
       ...entry,
       summonerName: riotIdResponses[index].data.gameName,
       tagLine: riotIdResponses[index].data.tagLine,
     }));
 
-    // Add a small delay to avoid hitting rate limits
     await delay(1000);
 
     return NextResponse.json(
@@ -73,6 +67,9 @@ export async function GET() {
     );
   } catch (error: any) {
     console.error("Error fetching leaderboard data:", error.message);
-    // Error handling code...
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }
