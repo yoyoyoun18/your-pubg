@@ -50,7 +50,7 @@ const Leaderboard = () => {
             >
               <div className="col-span-2 text-center">{index + 1}</div>
               <div className="col-span-8">
-                <span className="text-blue-500">
+                <span className="text-blue-500 cursor-pointer">
                   {player.summonerName}#{player.tagLine}
                 </span>
               </div>
