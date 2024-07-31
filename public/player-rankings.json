@@ -1,0 +1,54 @@
+{
+  "rankings": [
+    {
+      "rank": "1",
+      "name": "Peyz",
+      "point": "700"
+    },
+    {
+      "rank": "2",
+      "name": "Canyon",
+      "point": "700"
+    },
+    {
+      "rank": "3",
+      "name": "Showmaker",
+      "point": "700"
+    },
+    {
+      "rank": "4",
+      "name": "Lucid",
+      "point": "600"
+    },
+    {
+      "rank": "5",
+      "name": "Peanut",
+      "point": "600"
+    },
+    {
+      "rank": "6",
+      "name": "Faker",
+      "point": "600"
+    },
+    {
+      "rank": "7",
+      "name": "Oner",
+      "point": "500"
+    },
+    {
+      "rank": "8",
+      "name": "Bdd",
+      "point": "500"
+    },
+    {
+      "rank": "9",
+      "name": "Doran",
+      "point": "500"
+    },
+    {
+      "rank": "10",
+      "name": "Delight",
+      "point": "400"
+    }
+  ]
+}
