@@ -1,5 +1,7 @@
 import React from "react";
 import Leaderboard from "./Leaderboard";
+import TeamRank from "./TeamRank";
+import PlayerRank from "./PlayerRank";
 
 function BookMarkList() {
   return (
@@ -12,7 +14,7 @@ function BookMarkList() {
           </div>
         </div>
         <div className="text-center text-gray-500 h-full mt-2">
-          <Leaderboard />
+          <TeamRank />
         </div>
       </div>
       <div className="bg-white shadow-md w-full max-w-4xl h-full ml-1">
@@ -23,7 +25,7 @@ function BookMarkList() {
           </div>
         </div>
         <div className="text-center text-gray-500 h-full mt-2">
-          <Leaderboard />
+          <PlayerRank />
         </div>
       </div>
     </div>
