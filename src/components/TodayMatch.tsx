@@ -39,7 +39,6 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
         const logoData = await resp.json();
         setMatch(data.match);
         setTeamLogos(logoData);
-        console.log(teamLogos);
       } catch (error) {
         console.error("Error fetching match data:", error);
       }
