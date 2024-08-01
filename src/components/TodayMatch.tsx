@@ -67,7 +67,7 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
                   alt={`${team1} Logo`}
                   className="w-20 h-20"
                 />
-                <div className="font-bold text-center mt-4">{team1}</div>
+                <div className=" text-center mt-4">{team1}</div>
               </div>
             ) : (
               <div className="w-20 h-20 bg-gray-200" />
@@ -82,7 +82,7 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
                   alt={`${team2} Logo`}
                   className="w-20 h-20"
                 />
-                <div className="font-bold text-center mt-4">{team2}</div>
+                <div className=" text-center mt-4">{team2}</div>
               </div>
             ) : (
               <div className="w-20 h-20 bg-gray-200" />
@@ -93,10 +93,6 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
               {match.date} {num[2]}
             </div>
           </div>
-          {/* <div className="flex items-center justify-between text-black text-sm">
-            <div className="font-bold">{team1}</div>
-            <div className="font-bold">{team2}</div>
-          </div> */}
         </div>
       </div>
     </div>
