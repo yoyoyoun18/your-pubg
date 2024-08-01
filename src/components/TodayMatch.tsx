@@ -20,6 +20,13 @@ interface TeamLogos {
   [teamName: string]: TeamLogo;
 }
 
+const truncateString = (str: string, num: number = 7) => {
+  if (str.length <= num) {
+    return str;
+  }
+  return str.slice(0, num);
+};
+
 const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
   const [match, setMatch] = useState<Match | null>(null);
   const [teamLogos, setTeamLogos] = useState<TeamLogos | null>(null);
@@ -61,13 +68,15 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
         <div className="bg-white h-full w-full p-4">
           <div className="flex items-center justify-between mb-2">
             {team1Logo ? (
-              <div className="flex flex-col justify-center items-center">
+              <div className="flex flex-col justify-center items-center w-[75px] h-[96] lg:w-[100px]">
                 <img
                   src={team1Logo}
                   alt={`${team1} Logo`}
-                  className="w-20 h-20"
+                  className="w-16 h-16 md:w-20 md:h-20"
                 />
-                <div className=" text-center mt-4">{team1}</div>
+                <div className="text-center mt-4 text-xs lg:text-base">
+                  {truncateString(team1)}
+                </div>
               </div>
             ) : (
               <div className="w-20 h-20 bg-gray-200" />
@@ -76,13 +85,15 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
               Preview
             </button>
             {team2Logo ? (
-              <div className="flex flex-col justify-center items-center">
+              <div className="flex flex-col justify-center items-center w-[75px] h-[96] lg:w-[100px]">
                 <img
                   src={team2Logo}
                   alt={`${team2} Logo`}
-                  className="w-20 h-20"
+                  className="w-16 h-16 md:w-20 md:h-20"
                 />
-                <div className=" text-center mt-4">{team2}</div>
+                <div className=" text-center mt-4 text-xs lg:text-base">
+                  {truncateString(team2)}
+                </div>
               </div>
             ) : (
               <div className="w-20 h-20 bg-gray-200" />

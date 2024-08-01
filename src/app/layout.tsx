@@ -1,12 +1,12 @@
 // app/layout.tsx
-
 "use client";
 
 import React, { ReactNode } from "react";
-import "../styles/globals.css"; // 글로벌 스타일 시트
+import "../styles/globals.css";
 import { usePathname } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
 import Navbar from "./../components/Navbar";
+import Footer from "./../components/Footer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface RootLayoutProps {
@@ -17,7 +17,6 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   const pathname = usePathname();
   const queryClient = new QueryClient();
 
-  // accounts 경로인지 확인
   const isAccountsPath = pathname.startsWith("/accounts");
 
   return (
@@ -32,6 +31,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           <SessionProvider>
             {!isAccountsPath && <Navbar />}
             <main className="flex-grow">{children}</main>
+            {!isAccountsPath && <Footer />}
           </SessionProvider>
         </QueryClientProvider>
       </body>
