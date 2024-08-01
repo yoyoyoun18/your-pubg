@@ -87,7 +87,7 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
               {match.date} {num[2]}
             </div>
           </div>
-          <div className="flex items-center justify-between text-black text-xl">
+          <div className="flex items-center justify-between text-black text-sm">
             <div className="font-bold">{team1}</div>
             <div className="font-bold">{team2}</div>
           </div>
