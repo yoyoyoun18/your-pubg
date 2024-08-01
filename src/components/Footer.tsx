@@ -6,14 +6,14 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 py-8">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8  ">
+          <div className="hidden md:block">
             <h3 className="text-white text-lg font-semibold mb-4">YOUR.LOL</h3>
             <p className="text-sm">
               최고의 League of Legends 통계 및 분석 플랫폼
             </p>
           </div>
-          <div>
+          <div className="hidden md:block">
             <h4 className="text-white text-md font-semibold mb-4">
               서비스 정보
             </h4>
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="hidden md:block">
             <h4 className="text-white text-md font-semibold mb-4">
               팔로우하세요
             </h4>
@@ -66,9 +66,9 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="mt-8 border-t border-gray-700 pt-8 text-sm text-center">
-          <p>&copy; 2024 YOUR.LOL All rights reserved.</p>
-        </div>
+      </div>
+      <div className="mt-0 md:mt-8 border-t border-gray-700 pt-8 text-sm text-center">
+        <p>&copy; 2024 YOUR.LOL All rights reserved.</p>
       </div>
     </footer>
   );
