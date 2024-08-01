@@ -61,11 +61,14 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
         <div className="bg-white h-full w-full p-4">
           <div className="flex items-center justify-between mb-2">
             {team1Logo ? (
-              <img
-                src={team1Logo}
-                alt={`${team1} Logo`}
-                className="w-20 h-20"
-              />
+              <div className="flex flex-col justify-center items-center">
+                <img
+                  src={team1Logo}
+                  alt={`${team1} Logo`}
+                  className="w-20 h-20"
+                />
+                <div className="font-bold text-center mt-4">{team1}</div>
+              </div>
             ) : (
               <div className="w-20 h-20 bg-gray-200" />
             )}
@@ -73,11 +76,14 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
               Preview
             </button>
             {team2Logo ? (
-              <img
-                src={team2Logo}
-                alt={`${team2} Logo`}
-                className="w-20 h-20"
-              />
+              <div className="flex flex-col justify-center items-center">
+                <img
+                  src={team2Logo}
+                  alt={`${team2} Logo`}
+                  className="w-20 h-20"
+                />
+                <div className="font-bold text-center mt-4">{team2}</div>
+              </div>
             ) : (
               <div className="w-20 h-20 bg-gray-200" />
             )}
@@ -87,10 +93,10 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
               {match.date} {num[2]}
             </div>
           </div>
-          <div className="flex items-center justify-between text-black text-sm">
+          {/* <div className="flex items-center justify-between text-black text-sm">
             <div className="font-bold">{team1}</div>
             <div className="font-bold">{team2}</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
