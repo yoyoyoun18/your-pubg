@@ -35,18 +35,12 @@ function page() {
         </div>
         <div className="w-full mt-4">
           <div></div>
-          <div>
-            <input type="checkbox" className="form-checkbox cursor-pointer" />
-            <span className="ml-2">FPP</span>
-          </div>
         </div>
         <div className="w-full flex flex-row mt-4">
           <StatsCard />
           <StatChartCard />
         </div>
         <div className="w-full mt-4">
-          <MatchCard />
-          <MatchCard />
           <MatchCard />
           <MatchCard />
           <MatchCard />
