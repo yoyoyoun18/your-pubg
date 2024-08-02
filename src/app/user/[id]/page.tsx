@@ -1,4 +1,5 @@
 import MatchCard from "@/components/MatchCard";
+import StatChartCard from "@/components/StatChartCard";
 import StatsCard from "@/components/StatsCard";
 import React from "react";
 
@@ -28,7 +29,7 @@ function page() {
           </div>
           <div className="col-span-2 flex justify-end items-start text-right h-full text-white">
             <p>
-              플랫폼: <span className="text-yellow-400">Steam</span>
+              Level: <span className="text-yellow-400">701</span>
             </p>
           </div>
         </div>
@@ -41,7 +42,7 @@ function page() {
         </div>
         <div className="w-full flex flex-row mt-4">
           <StatsCard />
-          <StatsCard />
+          <StatChartCard />
         </div>
         <div className="w-full mt-4">
           <MatchCard />
