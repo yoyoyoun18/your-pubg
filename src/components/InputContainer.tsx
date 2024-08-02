@@ -1,6 +1,7 @@
 "use client";
 
 import useSearchStore from "@/store/searchStore";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 function InputContainer() {
@@ -9,32 +10,15 @@ function InputContainer() {
   const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
   const setSearchResults = useSearchStore((state) => state.setSearchResults);
 
-  const handleSearch = async () => {
-    // setSearchQuery(input);
-    // try {
-    //   const response = await fetch(
-    //     `/api/pubg/player?platform=steam&playerName=${input}`
-    //   );
-    //   if (!response.ok) {
-    //     throw new Error("Player data not found");
-    //   }
-    //   const data = await response.json();
-    //   setSearchResults(data);
-    // } catch (error: unknown) {
-    //   if (error instanceof Error) {
-    //     console.error("Error:", error.message);
-    //   } else {
-    //     console.error("Unknown error");
-    //   }
-    //   setSearchResults(null);
-    // }
+  // useEffect(() => {
+  //   console.log(searchResult);
+  // }, [searchResult]);
 
-    await fetch(`/user/asd`);
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/user/91_pd");
   };
-
-  useEffect(() => {
-    console.log(searchResult);
-  }, [searchResult]);
 
   return (
     <div className="w-full h-96 bg-main-container-img bg-center bg-cover bg-no-repeat flex flex-col items-center justify-between">
@@ -54,7 +38,7 @@ function InputContainer() {
             placeholder="닉네임을 입력해주세요."
           />
           <button
-            onClick={handleSearch}
+            onClick={handleClick}
             className="absolute right-0 top-0 h-full px-4 bg-[#5383E8] text-white rounded-r"
           >
             검색
