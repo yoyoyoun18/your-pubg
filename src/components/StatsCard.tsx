@@ -4,17 +4,14 @@ const StatsCard = () => {
   return (
     <div className="w-full max-w-md mx-auto bg-gray-100 shadow-md p-4">
       <div className="bg-gray-300 p-2 flex justify-between items-center">
-        <div className="text-sm font-semibold">경쟁전 FPP</div>
+        <div className="text-sm font-semibold">솔로 랭크</div>
         <div className="text-sm font-semibold text-blue-600">W 6</div>
       </div>
       <div className="flex items-center mt-4">
-        <img
-          src="https://static.wikia.nocookie.net/escapefromtarkov_gamepedia/images/e/e0/Golden_Dogtag_icon.png"
-          alt="Rank"
-          className="w-16 h-16"
-        />
-        <div className="ml-4">
-          <div className="text-2xl md:text-4xl font-bold">2,343</div>
+        <div className="ml-4 w-full">
+          <div className="text-2xl md:text-4xl font-bold w-full flex justify-between">
+            <span>2,343</span>
+          </div>
           <div className="text-sm text-gray-600">Gold 2</div>
           <div className="text-sm text-gray-600">57,709위 (상위 23.79%)</div>
         </div>
@@ -23,7 +20,7 @@ const StatsCard = () => {
         <div className="bg-purple-200 rounded-full h-2">
           <div
             className="bg-purple-600 h-2 rounded-full"
-            style={{ width: "23.79%" }}
+            style={{ width: "70%" }}
           ></div>
         </div>
       </div>
