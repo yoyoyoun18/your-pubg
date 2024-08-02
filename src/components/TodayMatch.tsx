@@ -74,9 +74,9 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
                   alt={`${team1} Logo`}
                   className="w-16 h-16 md:w-20 md:h-20"
                 />
-                <div className="text-center mt-4 text-xs lg:text-base">
+                {/* <div className="text-center mt-4 text-xs lg:text-base">
                   {truncateString(team1)}
-                </div>
+                </div> */}
               </div>
             ) : (
               <div className="w-20 h-20 bg-gray-200" />
@@ -91,9 +91,9 @@ const TodayMatch: React.FC<TodayMatchProps> = ({ num }) => {
                   alt={`${team2} Logo`}
                   className="w-16 h-16 md:w-20 md:h-20"
                 />
-                <div className=" text-center mt-4 text-xs lg:text-base">
+                {/* <div className=" text-center mt-4 text-xs lg:text-base">
                   {truncateString(team2)}
-                </div>
+                </div> */}
               </div>
             ) : (
               <div className="w-20 h-20 bg-gray-200" />
