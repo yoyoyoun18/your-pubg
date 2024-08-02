@@ -1,5 +1,4 @@
-// /src/store/useUserStore.ts
-import create from "zustand";
+import { create } from "zustand";
 
 interface TargetUser {
   puuid: string;
@@ -14,6 +13,7 @@ interface TargetUser {
   leaguePoints: number;
   wins: number;
   loses: number;
+  [key: string]: any;
 }
 
 interface UserStoreState {
