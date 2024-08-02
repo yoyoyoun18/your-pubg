@@ -10,24 +10,26 @@ function InputContainer() {
   const setSearchResults = useSearchStore((state) => state.setSearchResults);
 
   const handleSearch = async () => {
-    setSearchQuery(input);
-    try {
-      const response = await fetch(
-        `/api/pubg/player?platform=steam&playerName=${input}`
-      );
-      if (!response.ok) {
-        throw new Error("Player data not found");
-      }
-      const data = await response.json();
-      setSearchResults(data);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error("Error:", error.message);
-      } else {
-        console.error("Unknown error");
-      }
-      setSearchResults(null);
-    }
+    // setSearchQuery(input);
+    // try {
+    //   const response = await fetch(
+    //     `/api/pubg/player?platform=steam&playerName=${input}`
+    //   );
+    //   if (!response.ok) {
+    //     throw new Error("Player data not found");
+    //   }
+    //   const data = await response.json();
+    //   setSearchResults(data);
+    // } catch (error: unknown) {
+    //   if (error instanceof Error) {
+    //     console.error("Error:", error.message);
+    //   } else {
+    //     console.error("Unknown error");
+    //   }
+    //   setSearchResults(null);
+    // }
+
+    await fetch(`/user/asd`);
   };
 
   useEffect(() => {
