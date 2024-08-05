@@ -1,6 +1,7 @@
 "use client";
 
 import useSearchStore from "@/store/searchStore";
+import useUserStore from "@/store/useUserStore";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -9,6 +10,7 @@ function InputContainer() {
   const searchResult = useSearchStore((state) => state.searchResults);
   const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
   const setSearchResults = useSearchStore((state) => state.setSearchResults);
+  const setTargetUser = useUserStore((state) => state.setTargetUser);
 
   // useEffect(() => {
   //   console.log(searchResult);
@@ -17,8 +19,20 @@ function InputContainer() {
   const router = useRouter();
 
   const handleClick = () => {
+    const fullIdentifier = "Blue#KR33";
+    const [gameName, tagLine] = fullIdentifier.split("#");
+
+    setTargetUser({
+      gameName: gameName,
+      tagLine: tagLine,
+    });
     router.push("/user/91_pd");
   };
+
+  useUserStore.subscribe((state, prevState) => {
+    console.log("Previous state:", prevState);
+    console.log("Current state:", state);
+  });
 
   return (
     <div className="w-full h-96 bg-main-container-img bg-center bg-cover bg-no-repeat flex flex-col items-center justify-between">
