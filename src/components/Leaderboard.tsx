@@ -1,8 +1,10 @@
 "use client";
 
+import useUserStore from "@/store/useUserStore";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
+import Link from "next/link";
+import React, { useState } from "react";
 
 interface LeaderboardEntry {
   summonerName: string;
@@ -22,6 +24,19 @@ const fetchLeaderboard = async (): Promise<LeaderboardData> => {
 };
 
 const Leaderboard = () => {
+  const [targetWord, setTargetWord] = useState<string>("");
+  const setTargetUser = useUserStore((state) => state.setTargetUser);
+
+  const handleClick = (summonerName: string, tagLine: string) => {
+    const fullIdentifier = `${summonerName}#${tagLine}`;
+    setTargetWord(fullIdentifier);
+
+    setTargetUser({
+      gameName: summonerName,
+      tagLine: tagLine,
+    });
+  };
+
   const { data, isLoading, error } = useQuery<LeaderboardData, Error>({
     queryKey: ["leaderboard"],
     queryFn: fetchLeaderboard,
@@ -50,9 +65,19 @@ const Leaderboard = () => {
             >
               <div className="col-span-2 text-center">{index + 1}</div>
               <div className="col-span-8">
-                <span className="text-blue-500 cursor-pointer">
-                  {player.summonerName}#{player.tagLine}
-                </span>
+                <Link href={`/user/${player.summonerName}${player.tagLine}`}>
+                  <span
+                    className="text-blue-500 cursor-pointer"
+                    onClick={() =>
+                      setTargetUser({
+                        gameName: player.summonerName,
+                        tagLine: player.tagLine,
+                      })
+                    }
+                  >
+                    {player.summonerName}#{player.tagLine}
+                  </span>
+                </Link>
               </div>
               <div className="col-span-2 text-center">
                 {player.leaguePoints}
