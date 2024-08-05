@@ -51,12 +51,15 @@ const fetchRiotAccountDetail = async (puuid: string): Promise<RiotAccount> => {
 const fetchRiotAccountRankInfo = async (
   encryptedId: string
 ): Promise<RiotAccount> => {
-  const { data } = await axios.get<RiotAccount>("/api/user/search/playertier", {
-    params: {
-      encryptedId,
-    },
-  });
-  return data;
+  const { data }: any = await axios.get<RiotAccount>(
+    "/api/user/search/playertier",
+    {
+      params: {
+        encryptedId,
+      },
+    }
+  );
+  return data[0];
 };
 
 function Page() {
