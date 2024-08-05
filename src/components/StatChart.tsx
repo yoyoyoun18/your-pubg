@@ -4,15 +4,30 @@ import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import useUserStore from "@/store/useUserStore";
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 function StatChart() {
+  const {
+    puuid,
+    gameName,
+    tagLine,
+    encryptedId,
+    accountId,
+    profileIconId,
+    revisionDate,
+    summonerLevel,
+    tier,
+    leaguePoints,
+    wins,
+    losses,
+  } = useUserStore((state) => state.targetUser);
   const data = {
     labels: ["Win", "Lose"],
     datasets: [
       {
-        data: [49, 51],
+        data: [wins, losses],
         backgroundColor: ["#36A2EB", "#FF6384"],
         hoverBackgroundColor: ["#36A2EB", "#FF6384"],
       },
@@ -24,7 +39,7 @@ function StatChart() {
       datalabels: {
         color: "#fff",
         formatter: (value: any) => {
-          return value + "%";
+          return value;
         },
       },
       tooltip: {
@@ -35,7 +50,7 @@ function StatChart() {
               label += ": ";
             }
             if (context.raw !== null) {
-              label += context.raw + "%";
+              label += context.raw;
             }
             return label;
           },

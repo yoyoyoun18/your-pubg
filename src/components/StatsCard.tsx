@@ -1,6 +1,8 @@
+import useUserStore from "@/store/useUserStore";
 import React from "react";
 
 const StatsCard = () => {
+  const { tier, leaguePoints } = useUserStore((state) => state.targetUser);
   return (
     <div className="w-full max-w-md mx-auto bg-gray-100 shadow-md p-4">
       <div className="bg-gray-300 p-2 flex justify-between items-center">
@@ -10,9 +12,9 @@ const StatsCard = () => {
       <div className="flex items-center mt-4">
         <div className="ml-4 w-full">
           <div className="text-2xl md:text-4xl font-bold w-full flex justify-between">
-            <span>2,343</span>
+            <span>{leaguePoints}</span>
           </div>
-          <div className="text-sm text-gray-600">Gold 2</div>
+          <div className="text-sm text-gray-600">{tier}</div>
           <div className="text-sm text-gray-600">57,709위 (상위 23.79%)</div>
         </div>
       </div>
