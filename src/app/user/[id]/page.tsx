@@ -12,6 +12,15 @@ interface RiotAccount {
   puuid: string;
   gameName: string;
   tagLine: string;
+  id: string;
+  accountId: string;
+  profileIconId: string;
+  revisionDate: string;
+  summonerLevel: string;
+  tier: string;
+  leaguePoints: string;
+  wins: string;
+  loses: string;
 }
 
 const fetchRiotAccount = async (
@@ -27,37 +36,89 @@ const fetchRiotAccount = async (
   return data;
 };
 
+const fetchRiotAccountDetail = async (puuid: string): Promise<RiotAccount> => {
+  const { data } = await axios.get<RiotAccount>(
+    "/api/user/search/playerdetail",
+    {
+      params: {
+        puuid,
+      },
+    }
+  );
+  return data;
+};
+
 function Page() {
   const setTargetUser = useUserStore((state) => state.setTargetUser);
-  const gameName = useUserStore((state) => state.targetUser.gameName);
-  const tagLine = useUserStore((state) => state.targetUser.tagLine);
-  const puuid = useUserStore((state) => state.targetUser.puuid);
+  const {
+    puuid,
+    gameName,
+    tagLine,
+    encryptedId,
+    accountId,
+    profileIconId,
+    revisionDate,
+    summonerLevel,
+    tier,
+    leaguePoints,
+    wins,
+    loses,
+  } = useUserStore((state) => state.targetUser);
 
   const {
     data: account,
-    error,
-    isLoading,
+    error: accountError,
+    isLoading: isAccountLoading,
   } = useQuery<RiotAccount, Error>({
-    queryKey: ["riotAccount"],
+    queryKey: ["riotAccount", gameName, tagLine],
     queryFn: () => fetchRiotAccount(gameName, tagLine),
     enabled: !!gameName && !!tagLine,
   });
 
-  useEffect(() => {}, [puuid]);
+  const {
+    data: accountDetail,
+    error: accountDetailError,
+    isLoading: isAccountDetailLoading,
+  } = useQuery<RiotAccount, Error>({
+    queryKey: ["riotAccountDetail", puuid],
+    queryFn: () => fetchRiotAccountDetail(puuid),
+    enabled: !!puuid,
+  });
 
   useEffect(() => {
-    if (error) {
-      console.error("Query error:", error);
+    if (account) {
+      console.log("Account data received:", account);
+      setTargetUser({
+        puuid: account.puuid,
+        gameName: account.gameName,
+        tagLine: account.tagLine,
+        profileIconId: accountDetail?.profileIconId,
+        encryptedId: accountDetail?.id,
+        summonerLevel: accountDetail?.summonerLevel,
+        accountId: accountDetail?.accountId,
+        revisionDate: accountDetail?.revisionDate,
+      });
     }
-  }, [error]);
+  }, [account, setTargetUser, accountDetail]);
+
+  useEffect(() => {
+    if (accountError) {
+      console.error("Account query error:", accountError);
+    }
+    if (accountDetailError) {
+      console.error("Account detail query error:", accountDetailError);
+    }
+  }, [accountError, accountDetailError]);
+
+  //암호화 id, account id, puuid, profileIconId, revisionDate, summonerLevel
 
   useUserStore.subscribe((state, prevState) => {
     console.log("Previous state:", prevState);
     console.log("Current state:", state);
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>An error occurred: {error.message}</div>;
+  if (isAccountLoading || isAccountDetailLoading) return <div>Loading...</div>;
+  if (accountError || accountDetailError) return <div>An error occurred:</div>;
 
   return (
     <div className="flex flex-col lg:flex-col justify-center items-center bg-[#EAEAEA] h-auto p-8 w-auto">
