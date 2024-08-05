@@ -6,13 +6,13 @@ interface TargetUser {
   tagLine: string;
   encryptedId: string;
   accountId: string;
-  profileIconId: number;
-  revisionDate: number;
-  summonerLevel: number;
+  profileIconId: string;
+  revisionDate: string;
+  summonerLevel: string;
   tier: string;
-  leaguePoints: number;
-  wins: number;
-  loses: number;
+  leaguePoints: string;
+  wins: string;
+  loses: string;
   [key: string]: any;
 }
 
@@ -28,13 +28,13 @@ const useUserStore = create<UserStoreState>((set) => ({
     tagLine: "",
     encryptedId: "",
     accountId: "",
-    profileIconId: 0,
-    revisionDate: 0,
-    summonerLevel: 0,
+    profileIconId: "",
+    revisionDate: "",
+    summonerLevel: "",
     tier: "",
-    leaguePoints: 0,
-    wins: 0,
-    loses: 0,
+    leaguePoints: "",
+    wins: "",
+    loses: "",
   },
   setTargetUser: (newUser) =>
     set((state) => ({
