@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const { data } = await axios.get(
-      `https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/lXu1mvJOZEBnUs7wxWA91kgMVA93fC_mUluXt4DsPkE5JLeDHKEMZzwPxw`,
+      `https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${encryptedId}`,
       {
         params: {
           api_key: process.env.RIOT_API_KEY,

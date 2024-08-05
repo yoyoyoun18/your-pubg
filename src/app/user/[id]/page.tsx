@@ -131,7 +131,7 @@ function Page() {
         tier: accountRank?.tier,
       });
     }
-  }, [account, setTargetUser, accountDetail, accountRank]);
+  }, [account, setTargetUser, accountDetail, accountRank, gameName]);
 
   useEffect(() => {
     if (accountError) {
