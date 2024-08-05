@@ -18,7 +18,7 @@ const fetchRiotAccount = async (
   gameName: string,
   tagLine: string
 ): Promise<RiotAccount> => {
-  const { data } = await axios.get<RiotAccount>("/api/user/search", {
+  const { data } = await axios.get<RiotAccount>("/api/user/search/playerinfo", {
     params: {
       gameName,
       tagLine,
@@ -42,6 +42,8 @@ function Page() {
     queryFn: () => fetchRiotAccount(gameName, tagLine),
     enabled: !!gameName && !!tagLine,
   });
+
+  useEffect(() => {}, [puuid]);
 
   useEffect(() => {
     if (error) {
