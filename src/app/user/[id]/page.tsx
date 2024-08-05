@@ -20,7 +20,7 @@ interface RiotAccount {
   tier: string;
   leaguePoints: string;
   wins: string;
-  loses: string;
+  losses: string;
 }
 
 const fetchRiotAccount = async (
@@ -48,6 +48,17 @@ const fetchRiotAccountDetail = async (puuid: string): Promise<RiotAccount> => {
   return data;
 };
 
+const fetchRiotAccountRankInfo = async (
+  encryptedId: string
+): Promise<RiotAccount> => {
+  const { data } = await axios.get<RiotAccount>("/api/user/search/playertier", {
+    params: {
+      encryptedId,
+    },
+  });
+  return data;
+};
+
 function Page() {
   const setTargetUser = useUserStore((state) => state.setTargetUser);
   const {
@@ -62,7 +73,7 @@ function Page() {
     tier,
     leaguePoints,
     wins,
-    loses,
+    losses,
   } = useUserStore((state) => state.targetUser);
 
   const {
@@ -85,9 +96,23 @@ function Page() {
     enabled: !!puuid,
   });
 
+  const {
+    data: accountRank,
+    error: accountRankError,
+    isLoading: isAccountRankLoading,
+  } = useQuery<RiotAccount, Error>({
+    queryKey: ["riotAccountRank", encryptedId],
+    queryFn: () => fetchRiotAccountRankInfo(encryptedId),
+    enabled: !!encryptedId,
+  });
+
   useEffect(() => {
     if (account) {
-      console.log("Account data received:", account);
+      console.log("Account data received:", {
+        account,
+        accountDetail,
+        accountRank,
+      });
       setTargetUser({
         puuid: account.puuid,
         gameName: account.gameName,
@@ -97,9 +122,13 @@ function Page() {
         summonerLevel: accountDetail?.summonerLevel,
         accountId: accountDetail?.accountId,
         revisionDate: accountDetail?.revisionDate,
+        leaguePoints: accountRank?.leaguePoints,
+        wins: accountRank?.wins,
+        losses: accountRank?.losses,
+        tier: accountRank?.tier,
       });
     }
-  }, [account, setTargetUser, accountDetail]);
+  }, [account, setTargetUser, accountDetail, accountRank]);
 
   useEffect(() => {
     if (accountError) {
@@ -108,15 +137,21 @@ function Page() {
     if (accountDetailError) {
       console.error("Account detail query error:", accountDetailError);
     }
-  }, [accountError, accountDetailError]);
+    if (accountRankError) {
+      console.error("Account rank query error:", accountRankError);
+    }
+  }, [accountError, accountDetailError, accountRankError]);
 
   useUserStore.subscribe((state, prevState) => {
     console.log("Previous state:", prevState);
     console.log("Current state:", state);
   });
 
-  if (isAccountLoading || isAccountDetailLoading) return <div>Loading...</div>;
-  if (accountError || accountDetailError) return <div>An error occurred:</div>;
+  if (isAccountLoading || isAccountDetailLoading || isAccountRankLoading) {
+    return <div>Loading...</div>;
+  }
+  if (accountError || accountDetailError || accountRankError)
+    return <div>An error occurred:</div>;
 
   return (
     <div className="flex flex-col lg:flex-col justify-center items-center bg-[#EAEAEA] h-auto p-8 w-auto">
