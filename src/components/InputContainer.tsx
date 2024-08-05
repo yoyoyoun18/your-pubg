@@ -5,13 +5,13 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 function InputContainer() {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState<string>("");
   const setTargetUser = useUserStore((state) => state.setTargetUser);
 
   const router = useRouter();
 
   const handleClick = () => {
-    const fullIdentifier = "Blue#KR33";
+    const fullIdentifier: string = input;
     const [gameName, tagLine] = fullIdentifier.split("#");
 
     setTargetUser({

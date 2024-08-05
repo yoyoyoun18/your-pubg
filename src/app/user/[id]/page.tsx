@@ -14,11 +14,14 @@ interface RiotAccount {
   tagLine: string;
 }
 
-const fetchRiotAccount = async (): Promise<RiotAccount> => {
+const fetchRiotAccount = async (
+  gameName: string,
+  tagLine: string
+): Promise<RiotAccount> => {
   const { data } = await axios.get<RiotAccount>("/api/user/search", {
     params: {
-      gameName: "Blue",
-      tagLine: "KR33",
+      gameName,
+      tagLine,
     },
   });
   return data;
@@ -36,7 +39,8 @@ function Page() {
     isLoading,
   } = useQuery<RiotAccount, Error>({
     queryKey: ["riotAccount"],
-    queryFn: fetchRiotAccount,
+    queryFn: () => fetchRiotAccount(gameName, tagLine),
+    enabled: !!gameName && !!tagLine,
   });
 
   useEffect(() => {
