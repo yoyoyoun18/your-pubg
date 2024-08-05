@@ -1,9 +1,8 @@
 "use client";
 
-import useSearchStore from "@/store/searchStore";
 import useUserStore from "@/store/useUserStore";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function InputContainer() {
   const [input, setInput] = useState("");
