@@ -7,14 +7,7 @@ import React, { useEffect, useState } from "react";
 
 function InputContainer() {
   const [input, setInput] = useState("");
-  const searchResult = useSearchStore((state) => state.searchResults);
-  const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
-  const setSearchResults = useSearchStore((state) => state.setSearchResults);
   const setTargetUser = useUserStore((state) => state.setTargetUser);
-
-  // useEffect(() => {
-  //   console.log(searchResult);
-  // }, [searchResult]);
 
   const router = useRouter();
 
