@@ -21,6 +21,7 @@ export async function GET(request: NextRequest) {
         },
       }
     );
+    console.log("puuid 정상적으로 전달 받고 요청 드감");
     return NextResponse.json(data);
   } catch (error) {
     console.error("Error fetching Riot account:", error);
