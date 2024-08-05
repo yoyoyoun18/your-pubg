@@ -28,6 +28,7 @@ function Page() {
   const setTargetUser = useUserStore((state) => state.setTargetUser);
   const gameName = useUserStore((state) => state.targetUser.gameName);
   const tagLine = useUserStore((state) => state.targetUser.tagLine);
+  const puuid = useUserStore((state) => state.targetUser.puuid);
 
   const {
     data: account,
