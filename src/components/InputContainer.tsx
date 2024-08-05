@@ -26,7 +26,7 @@ function InputContainer() {
       gameName: gameName,
       tagLine: tagLine,
     });
-    router.push("/user/91_pd");
+    router.push(`/user/${gameName}${tagLine}`);
   };
 
   useUserStore.subscribe((state, prevState) => {
