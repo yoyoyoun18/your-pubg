@@ -110,8 +110,6 @@ function Page() {
     }
   }, [accountError, accountDetailError]);
 
-  //암호화 id, account id, puuid, profileIconId, revisionDate, summonerLevel
-
   useUserStore.subscribe((state, prevState) => {
     console.log("Previous state:", prevState);
     console.log("Current state:", state);
@@ -143,11 +141,11 @@ function Page() {
                 즐겨찾기
               </button>
             </div>
-            <p className="text-gray-400 mt-2">최근 업데이트: 12일 전</p>
+            <p className="text-gray-400 mt-2">최근 업데이트: {revisionDate}</p>
           </div>
           <div className="col-span-2 flex justify-end items-start text-right h-full text-white">
             <p>
-              Level: <span className="text-yellow-400">701</span>
+              Level: <span className="text-yellow-400">{summonerLevel}</span>
             </p>
           </div>
         </div>
