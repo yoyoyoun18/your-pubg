@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 interface TargetUser {
   puuid: string;
@@ -21,25 +22,33 @@ interface UserStoreState {
   setTargetUser: (newUser: Partial<TargetUser>) => void;
 }
 
-const useUserStore = create<UserStoreState>((set) => ({
-  targetUser: {
-    puuid: "",
-    gameName: "",
-    tagLine: "",
-    encryptedId: "",
-    accountId: "",
-    profileIconId: "",
-    revisionDate: "",
-    summonerLevel: "",
-    tier: "",
-    leaguePoints: "",
-    wins: "",
-    losses: "",
-  },
-  setTargetUser: (newUser) =>
-    set((state) => ({
-      targetUser: { ...state.targetUser, ...newUser },
-    })),
-}));
+const useUserStore = create<UserStoreState>()(
+  persist(
+    (set) => ({
+      targetUser: {
+        puuid: "",
+        gameName: "",
+        tagLine: "",
+        encryptedId: "",
+        accountId: "",
+        profileIconId: "",
+        revisionDate: "",
+        summonerLevel: "",
+        tier: "",
+        leaguePoints: "",
+        wins: "",
+        losses: "",
+      },
+      setTargetUser: (newUser) =>
+        set((state) => ({
+          targetUser: { ...state.targetUser, ...newUser },
+        })),
+    }),
+    {
+      name: "user-storage",
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
+);
 
 export default useUserStore;
