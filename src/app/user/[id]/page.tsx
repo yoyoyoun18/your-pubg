@@ -44,17 +44,6 @@ function Page() {
   });
 
   useEffect(() => {
-    if (account) {
-      console.log("Account data received:", account);
-      setTargetUser({
-        puuid: account.puuid,
-        gameName: account.gameName,
-        tagLine: account.tagLine,
-      });
-    }
-  }, [account, setTargetUser]);
-
-  useEffect(() => {
     if (error) {
       console.error("Query error:", error);
     }
