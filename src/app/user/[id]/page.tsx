@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useEffect } from "react";
 import useUserStore from "@/store/useUserStore";
+import AddMatch from "@/components/AddMatch";
 
 interface RiotAccount {
   puuid: string;
@@ -190,16 +191,20 @@ function Page() {
         <div className="w-full mt-4">
           <div></div>
         </div>
-        <div className="w-full flex flex-row mt-4">
-          <StatsCard />
-          <StatChartCard />
-        </div>
-        <div className="w-full mt-4">
-          <MatchCard />
-          <MatchCard />
-          <MatchCard />
-          <MatchCard />
-          <MatchCard />
+        <div className="w-full flex flex-row mt-4 justify-center">
+          <div className="w-1/3 mr-4">
+            <StatsCard />
+            <StatChartCard />
+          </div>
+
+          <div className="w-2/3">
+            <MatchCard />
+            <MatchCard />
+            <MatchCard />
+            <MatchCard />
+            <MatchCard />
+            <AddMatch />
+          </div>
         </div>
       </div>
     </div>

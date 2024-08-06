@@ -1,67 +1,22 @@
-import useUserStore from "@/store/useUserStore";
 import React from "react";
 
 const StatsCard = () => {
-  const { tier, leaguePoints } = useUserStore((state) => state.targetUser);
   return (
-    <div className="w-full max-w-md mx-auto bg-gray-100 shadow-md p-4">
-      <div className="bg-gray-300 p-2 flex justify-between items-center">
-        <div className="text-sm font-semibold">솔로 랭크</div>
-        <div className="text-sm font-semibold text-blue-600">W 6</div>
+    <div className="bg-white shadow-lg overflow-hidden w-full max-w-4xl h-[150px]">
+      <div className="bg-[#5383E8] p-2">
+        <div className="font-bold col-span-2 text-white">솔로 랭크</div>
       </div>
-      <div className="flex items-center mt-4">
-        <div className="ml-4 w-full">
-          <div className="text-2xl md:text-4xl font-bold w-full flex justify-between">
-            <span>{leaguePoints}</span>
-          </div>
-          <div className="text-sm text-gray-600">{tier}</div>
-          <div className="text-sm text-gray-600">57,709위 (상위 23.79%)</div>
+      <div className="grid grid-cols-12 h-auto">
+        <div className="col-span-4 p-2 flex justify-center items-center">
+          <span className="rounded-full bg-gray-400 h-[90px] w-[90px]"></span>
         </div>
-      </div>
-      <div className="mt-4">
-        <div className="bg-purple-200 rounded-full h-2">
-          <div
-            className="bg-purple-600 h-2 rounded-full"
-            style={{ width: "70%" }}
-          ></div>
+        <div className="col-span-4 p-2 flex justify-center items-center flex-col">
+          <span className="font-bold mb-1">Challenger</span>
+          <span className="text-xs">2400 LP</span>
         </div>
-      </div>
-      <div className="grid grid-cols-2 gap-4 mt-4 text-sm">
-        <div>
-          <div className="font-semibold">K/D</div>
-          <div className="text-lg">0.38</div>
-        </div>
-        <div>
-          <div className="font-semibold">경기 당 데미지</div>
-          <div className="text-lg">88</div>
-        </div>
-        <div>
-          <div className="font-semibold">승률</div>
-          <div>6.4%</div>
-        </div>
-        <div>
-          <div className="font-semibold">Top 10%</div>
-          <div>64.9%</div>
-        </div>
-        <div>
-          <div className="font-semibold">최대 거리 킬</div>
-          <div>0.0m</div>
-        </div>
-        <div>
-          <div className="font-semibold">헤드샷</div>
-          <div>0.0%</div>
-        </div>
-        <div>
-          <div className="font-semibold">평균등수</div>
-          <div>#8.3</div>
-        </div>
-        <div>
-          <div className="font-semibold">KDA</div>
-          <div>0.60</div>
-        </div>
-        <div>
-          <div className="font-semibold">최다 킬</div>
-          <div>0</div>
+        <div className="col-span-4 p-2 flex justify-center items-center flex-col">
+          <span className="text-xs mb-1">254승 177패</span>
+          <span className="text-xs">승률 59%</span>
         </div>
       </div>
     </div>
