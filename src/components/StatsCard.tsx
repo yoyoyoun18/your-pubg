@@ -4,7 +4,7 @@ const StatsCard = () => {
   return (
     <div className="bg-white shadow-lg overflow-hidden w-full max-w-4xl h-[150px]">
       <div className="bg-[#5383E8] p-2">
-        <div className="font-bold col-span-2 text-white">솔로 랭크</div>
+        <div className="font-bold col-span-2 text-white text-sm">솔로 랭크</div>
       </div>
       <div className="grid grid-cols-12 h-auto">
         <div className="col-span-6 lg:col-span-4 p-2 flex justify-center items-center">
