@@ -2,20 +2,9 @@ import useUserStore from "@/store/useUserStore";
 import React from "react";
 
 const StatsCard = () => {
-  const {
-    puuid,
-    gameName,
-    tagLine,
-    encryptedId,
-    accountId,
-    profileIconId,
-    revisionDate,
-    summonerLevel,
-    tier,
-    leaguePoints,
-    wins,
-    losses,
-  } = useUserStore((state) => state.targetUser);
+  const { tier, leaguePoints, wins, losses } = useUserStore(
+    (state) => state.targetUser
+  );
   return (
     <div className="bg-white shadow-lg overflow-hidden w-full max-w-4xl h-[150px]">
       <div className="bg-[#5383E8] p-2">
