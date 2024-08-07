@@ -9,20 +9,7 @@ import useUserStore from "@/store/useUserStore";
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 function StatChart() {
-  const {
-    puuid,
-    gameName,
-    tagLine,
-    encryptedId,
-    accountId,
-    profileIconId,
-    revisionDate,
-    summonerLevel,
-    tier,
-    leaguePoints,
-    wins,
-    losses,
-  } = useUserStore((state) => state.targetUser);
+  const { wins, losses } = useUserStore((state) => state.targetUser);
   const data = {
     labels: ["Win", "Lose"],
     datasets: [
