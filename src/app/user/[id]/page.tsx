@@ -22,6 +22,7 @@ interface RiotAccount {
   leaguePoints: string;
   wins: string;
   losses: string;
+  matches?: string[];
 }
 
 const fetchRiotAccount = async (
@@ -46,6 +47,7 @@ const fetchRiotAccountDetail = async (puuid: string): Promise<RiotAccount> => {
       },
     }
   );
+  console.log("data는" + data);
   return data;
 };
 
@@ -78,6 +80,7 @@ function Page() {
     leaguePoints,
     wins,
     losses,
+    matches,
   } = useUserStore((state) => state.targetUser);
 
   const {
@@ -111,28 +114,35 @@ function Page() {
   });
 
   useEffect(() => {
-    if (account) {
+    if (account && accountDetail) {
       console.log("Account data received:", {
         account,
         accountDetail,
         accountRank,
       });
+
+      // 여기서 타입 단언을 사용하여 TypeScript 오류를 해결합니다.
+      const detailWithSummoner = accountDetail as RiotAccount & {
+        summoner: any;
+      };
+
       setTargetUser({
         puuid: account.puuid,
         gameName: account.gameName,
         tagLine: account.tagLine,
-        profileIconId: accountDetail?.profileIconId,
-        encryptedId: accountDetail?.id,
-        summonerLevel: accountDetail?.summonerLevel,
-        accountId: accountDetail?.accountId,
-        revisionDate: accountDetail?.revisionDate,
+        encryptedId: detailWithSummoner.summoner.id,
+        accountId: detailWithSummoner.summoner.accountId,
+        profileIconId: detailWithSummoner.summoner.profileIconId,
+        revisionDate: detailWithSummoner.summoner.revisionDate,
+        summonerLevel: detailWithSummoner.summoner.summonerLevel,
+        tier: accountRank?.tier,
         leaguePoints: accountRank?.leaguePoints,
         wins: accountRank?.wins,
         losses: accountRank?.losses,
-        tier: accountRank?.tier,
+        matches: detailWithSummoner.matches,
       });
     }
-  }, [account, setTargetUser, accountDetail, accountRank, gameName]);
+  }, [account, accountDetail, accountRank, setTargetUser]);
 
   useEffect(() => {
     if (accountError) {
