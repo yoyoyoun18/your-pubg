@@ -14,6 +14,7 @@ interface TargetUser {
   leaguePoints: string;
   wins: string;
   losses: string;
+  matches: string[];
   [key: string]: any;
 }
 
@@ -38,6 +39,7 @@ const useUserStore = create<UserStoreState>()(
         leaguePoints: "",
         wins: "",
         losses: "",
+        matches: [],
       },
       setTargetUser: (newUser) =>
         set((state) => ({
