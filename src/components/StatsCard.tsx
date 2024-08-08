@@ -12,7 +12,11 @@ const StatsCard = () => {
       </div>
       <div className="grid grid-cols-12 h-auto">
         <div className="col-span-6 lg:col-span-4 p-2 flex justify-center items-center">
-          <span className="rounded-full bg-gray-400 h-[90px] w-[90px]"></span>
+          <span className="rounded-full bg-none h-[90px] w-[90px]">
+            <img
+              src={`https://kimyoungjoforum1557.s3.ap-northeast-2.amazonaws.com/Rank%3D${tier}.png`}
+            ></img>
+          </span>
         </div>
         <div className="col-span-6 lg:col-span-4 p-2 flex justify-center items-center flex-col">
           <span className="font-bold text-xs lg:text-md mb-1">{tier}</span>
