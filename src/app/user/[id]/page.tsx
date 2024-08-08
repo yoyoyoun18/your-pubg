@@ -163,7 +163,7 @@ function Page() {
         <div className="w-full bg-gray-800 p-4 grid grid-cols-12 items-center">
           <div className="col-span-2">
             <img
-              src="https://avatars.steamstatic.com/ee408126efcefb02b7aea459bfcba4650237df39_full.jpg"
+              src={`https://ddragon.leagueoflegends.com/cdn/14.15.1/img/profileicon/${profileIconId}.png `}
               className="w-full h-full object-cover rounded"
               alt="Profile"
             />
