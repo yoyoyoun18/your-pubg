@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
         {
           params: {
             start: 0,
-            count: 5,
+            count: 1,
             api_key: process.env.RIOT_API_KEY,
           },
         }

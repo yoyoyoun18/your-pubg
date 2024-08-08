@@ -8,6 +8,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import useUserStore from "@/store/useUserStore";
 import AddMatch from "@/components/AddMatch";
+import MatchDiv from "@/components/MatchDiv";
 
 interface RiotAccount {
   puuid: string;
@@ -208,15 +209,7 @@ function Page() {
             <StatsCard />
             <StatChartCard />
           </div>
-
-          <div className="w-full md:w-2/3">
-            <MatchCard />
-            <MatchCard />
-            <MatchCard />
-            <MatchCard />
-            <MatchCard />
-            <AddMatch />
-          </div>
+          <MatchDiv />
         </div>
       </div>
     </div>
