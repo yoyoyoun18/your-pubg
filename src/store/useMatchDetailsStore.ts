@@ -5,6 +5,9 @@ interface Participant {
   participantId: number;
   summonerName: string;
   championId: number;
+  assists: number;
+  kills: number;
+  deaths: number;
 
   teamId: number;
   championName: string;
@@ -16,6 +19,7 @@ interface MatchInfo {
   gameId: string;
   participants: Participant[];
   gameDuration: number;
+
   // Other fields in the info object...
 }
 
