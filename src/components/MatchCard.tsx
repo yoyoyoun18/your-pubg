@@ -9,6 +9,11 @@ const MatchCard = ({ index }: any) => {
   const champion = matchDetails[index]?.info.participants[0].championName;
   const durationMin = (matchDetails[index]?.info.gameDuration / 60) | 0;
   const durationSec = matchDetails[index]?.info.gameDuration % 60;
+  const kills = matchDetails[index]?.info.participants[0].kills;
+  const deaths = matchDetails[index]?.info.participants[0].deaths;
+  const assists = matchDetails[index]?.info.participants[0].assists;
+  const kda = (kills + assists) / deaths;
+  const kdaTruncated = parseFloat(kda.toFixed(2)); // 소수점 둘째자리에서 끊어주는 메서드
 
   return (
     <div
@@ -43,10 +48,13 @@ const MatchCard = ({ index }: any) => {
       <div className="w-1/2 flex flex-row">
         <div className="flex flex-col w-1/2 border-l border-gray-300 p-2 text-xs lg:text-sm">
           <div className="w-full">
-            <span>15 </span>/<span className="text-pink-500"> 4 </span>/
-            <span> 3</span>
+            <span>{kills} </span>/
+            <span className="text-pink-500"> {deaths} </span>/
+            <span> {assists}</span>
           </div>
-          <span className="text-xs text-gray-500 opacity-75">4.50:1 평점</span>
+          <span className="text-xs text-gray-500 opacity-75">
+            {kdaTruncated}:1 평점
+          </span>
         </div>
         <span className="bg-red-600 h-[25px] p-2 w-auto text-white rounded-2xl flex justify-center items-center text-xs">
           트리플 킬
