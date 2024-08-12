@@ -1,15 +1,18 @@
+import useMatchDetailsStore from "@/store/useMatchDetailsStore";
 import useUserStore from "@/store/useUserStore";
 import React from "react";
 
-const MatchCard = () => {
+const MatchCard = ({ index }: any) => {
   const { matches } = useUserStore((state) => state.targetUser);
+  const { matchDetails } = useMatchDetailsStore();
+
   return (
     <div className="flex items-center justify-between bg-blue-100 rounded-lg overflow-hidden h-[100px] mb-4 shadow-md">
       <div className="bg-[#5383E8] h-full w-[5px] mr-2"></div>
       <div className="flex flex-row w-1/2 items-center">
         <div className="flex flex-col text-xs lg:text-xs mr-6">
           <span className="text-[#5383E8] font-bold text-md lg:text-md ">
-            승리
+            {matchDetails[0]?.info.participants[0].win ? "승리" : "패배"}
           </span>
           <span className="lg:mt-0 mt-2">20분 6초</span>
         </div>
