@@ -8,7 +8,7 @@ interface Participant {
   assists: number;
   kills: number;
   deaths: number;
-
+  largestMultiKill: number;
   teamId: number;
   championName: string;
   win: boolean; // win 속성 추가
