@@ -122,7 +122,6 @@ function Page() {
         accountRank,
       });
 
-      // 여기서 타입 단언을 사용하여 TypeScript 오류를 해결합니다.
       const detailWithSummoner = accountDetail as RiotAccount & {
         summoner: any;
       };
@@ -157,10 +156,10 @@ function Page() {
     }
   }, [accountError, accountDetailError, accountRankError]);
 
-  useUserStore.subscribe((state, prevState) => {
-    console.log("Previous state:", prevState);
-    console.log("Current state:", state);
-  });
+  // useUserStore.subscribe((state, prevState) => {
+  //   console.log("Previous state:", prevState);
+  //   console.log("Current state:", state);
+  // });
 
   if (isAccountLoading || isAccountDetailLoading || isAccountRankLoading) {
     return <div>Loading...</div>;
