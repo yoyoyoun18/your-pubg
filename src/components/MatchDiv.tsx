@@ -20,12 +20,10 @@ function MatchDiv() {
 
   useEffect(() => {
     const fetchMatchDetails = async () => {
-      const apiKey = process.env.RIOT_API_KEY;
-
       for (const matchId of matches) {
         try {
           const response = await axios.get(
-            `https://asia.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${apiKey}`
+            `https://asia.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=RGAPI-7e3b0b0e-ba13-43b7-b70e-bf7e9795adf0`
           );
 
           const matchData = response.data;
