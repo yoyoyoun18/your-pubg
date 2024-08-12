@@ -10,6 +10,13 @@ interface Participant {
   deaths: number;
   largestMultiKill: number;
   teamId: number;
+  items: [];
+  item0: number;
+  item1: number;
+  item2: number;
+  item3: number;
+  item4: number;
+  item5: number;
   championName: string;
   win: boolean; // win 속성 추가
   // 필요에 따라 다른 필드 추가
