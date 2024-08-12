@@ -24,6 +24,14 @@ const MatchCard = ({ index }: any) => {
     4: "쿼드라 킬",
     5: "펜타 킬",
   };
+  const items = [
+    matchDetails[index]?.info.participants[0].item0,
+    matchDetails[index]?.info.participants[0].item1,
+    matchDetails[index]?.info.participants[0].item2,
+    matchDetails[index]?.info.participants[0].item3,
+    matchDetails[index]?.info.participants[0].item4,
+    matchDetails[index]?.info.participants[0].item5,
+  ];
 
   return (
     <div
@@ -37,9 +45,9 @@ const MatchCard = ({ index }: any) => {
         }  h-full w-[5px] mr-2`}
       ></div>
       <div className="flex flex-row w-1/2 items-center">
-        <div className="flex flex-col text-xs lg:text-xs mr-6">
+        <div className="flex flex-col text-xs lg:text-xs mr-6 w-[60px]">
           <span
-            className={` ${
+            className={`${
               gameResult ? "text-[#5383E8]" : "text-red-600"
             } font-bold text-md lg:text-md`}
           >
@@ -49,12 +57,28 @@ const MatchCard = ({ index }: any) => {
             {durationMin}분 {durationSec}초
           </span>
         </div>
-        <div className="rounded-full h-[70px] w-[70px] lg:h-[90px] lg:w-[90px] mr-8 overflow-hidden">
+        <div className="rounded-full h-[70px] w-[70px] lg:h-[80px] lg:w-[80px] mr-8 overflow-hidden">
           <img
             src={`https://ddragon.leagueoflegends.com/cdn/14.15.1/img/champion/${champion}.png`}
+            alt={`${champion}`}
           />
         </div>
+        <div className="grid grid-cols-3 gap-2 mr-2">
+          {items.map((a, i) => (
+            <span
+              key={i}
+              className={`${
+                a === 0 && "hidden"
+              }  h-[30px] w-[30px] bg-gray-200`}
+            >
+              <img
+                src={`https://ddragon.leagueoflegends.com/cdn/14.15.1/img/item/${a}.png`}
+              />
+            </span>
+          ))}
+        </div>
       </div>
+
       <div className="w-1/2 flex flex-row">
         <div className="flex flex-col w-1/2 border-l border-gray-300 p-2 text-xs lg:text-sm">
           <div className="w-full">
