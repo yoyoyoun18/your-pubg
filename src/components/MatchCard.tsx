@@ -14,6 +14,16 @@ const MatchCard = ({ index }: any) => {
   const assists = matchDetails[index]?.info.participants[0].assists;
   const kda = (kills + assists) / deaths;
   const kdaTruncated = parseFloat(kda.toFixed(2)); // 소수점 둘째자리에서 끊어주는 메서드
+  const largestMultiKill =
+    matchDetails[index]?.info.participants[0].largestMultiKill;
+  const multikills: { [key: number]: string } = {
+    0: "",
+    1: "",
+    2: "더블 킬",
+    3: "트리플 킬",
+    4: "쿼드라 킬",
+    5: "펜타 킬",
+  };
 
   return (
     <div
@@ -56,8 +66,12 @@ const MatchCard = ({ index }: any) => {
             {kdaTruncated}:1 평점
           </span>
         </div>
-        <span className="bg-red-600 h-[25px] p-2 w-auto text-white rounded-2xl flex justify-center items-center text-xs">
-          트리플 킬
+        <span
+          className={`${
+            largestMultiKill === 0 || largestMultiKill === 1 ? "hidden" : "flex"
+          } bg-red-600 h-[25px] p-2 w-auto text-white rounded-2xl flex justify-center items-center text-xs`}
+        >
+          {multikills[largestMultiKill]}
         </span>
       </div>
     </div>
