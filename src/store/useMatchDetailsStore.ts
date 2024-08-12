@@ -18,21 +18,17 @@ interface Participant {
   item4: number;
   item5: number;
   championName: string;
-  win: boolean; // win 속성 추가
-  // 필요에 따라 다른 필드 추가
+  win: boolean;
 }
 
 interface MatchInfo {
   gameId: string;
   participants: Participant[];
   gameDuration: number;
-
-  // Other fields in the info object...
 }
 
 interface MatchDetails {
   info: MatchInfo;
-  // Other top-level fields...
 }
 
 interface MatchDetailsStore {
