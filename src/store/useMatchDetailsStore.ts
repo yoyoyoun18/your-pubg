@@ -5,14 +5,17 @@ interface Participant {
   participantId: number;
   summonerName: string;
   championId: number;
+
   teamId: number;
-  win: string; // win 속성 추가
+  championName: string;
+  win: boolean; // win 속성 추가
   // 필요에 따라 다른 필드 추가
 }
 
 interface MatchInfo {
   gameId: string;
   participants: Participant[];
+  gameDuration: number;
   // Other fields in the info object...
 }
 
