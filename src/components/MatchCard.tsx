@@ -6,6 +6,9 @@ const MatchCard = ({ index }: any) => {
   const { matches } = useUserStore((state) => state.targetUser);
   const { matchDetails } = useMatchDetailsStore();
   const gameResult = matchDetails[index]?.info.participants[0].win;
+  const champion = matchDetails[index]?.info.participants[0].championName;
+  const durationMin = (matchDetails[index]?.info.gameDuration / 60) | 0;
+  const durationSec = matchDetails[index]?.info.gameDuration % 60;
 
   return (
     <div
@@ -27,9 +30,15 @@ const MatchCard = ({ index }: any) => {
           >
             {gameResult ? "승리" : "패배"}
           </span>
-          <span className="lg:mt-0 mt-2">20분 6초</span>
+          <span className="lg:mt-0 mt-2">
+            {durationMin}분 {durationSec}초
+          </span>
         </div>
-        <div className="rounded-full h-[70px] w-[70px] lg:h-[90px] lg:w-[90px] bg-gray-300 mr-8"></div>
+        <div className="rounded-full h-[70px] w-[70px] lg:h-[90px] lg:w-[90px] mr-8 overflow-hidden">
+          <img
+            src={`https://ddragon.leagueoflegends.com/cdn/14.15.1/img/champion/${champion}.png`}
+          />
+        </div>
       </div>
       <div className="w-1/2 flex flex-row">
         <div className="flex flex-col w-1/2 border-l border-gray-300 p-2 text-xs lg:text-sm">
