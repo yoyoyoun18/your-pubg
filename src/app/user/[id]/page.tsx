@@ -48,7 +48,7 @@ const fetchRiotAccountDetail = async (puuid: string): Promise<RiotAccount> => {
       },
     }
   );
-  console.log("data는" + data);
+  // console.log("data는" + data);
   return data;
 };
 
@@ -63,6 +63,7 @@ const fetchRiotAccountRankInfo = async (
       },
     }
   );
+
   return data[0];
 };
 
@@ -142,7 +143,7 @@ function Page() {
         matches: detailWithSummoner.matches,
       });
     }
-  }, [account, accountDetail, accountRank, setTargetUser]);
+  }, [account, accountDetail, accountRank]);
 
   useEffect(() => {
     if (accountError) {
@@ -156,10 +157,10 @@ function Page() {
     }
   }, [accountError, accountDetailError, accountRankError]);
 
-  useUserStore.subscribe((state, prevState) => {
-    console.log("Previous state:", prevState);
-    console.log("Current state:", state);
-  });
+  // useUserStore.subscribe((state, prevState) => {
+  //   console.log("Previous state:", prevState);
+  //   console.log("Current state:", state);
+  // });
 
   if (isAccountLoading || isAccountDetailLoading || isAccountRankLoading) {
     return <div>Loading...</div>;
