@@ -31,6 +31,8 @@ const MatchCard = ({ index }: any) => {
   const deaths = matchDetails[index]?.info.participants[0].deaths;
   const assists = matchDetails[index]?.info.participants[0].assists;
   const kda = (kills + assists) / deaths;
+  const gameEndTimestamp = matchDetails[index]?.info.gameEndTimestamp;
+  const timeAgo = formatTimeAgo(gameEndTimestamp);
   const kdaTruncated = parseFloat(kda.toFixed(2)); // 소수점 둘째자리에서 끊어주는 메서드
   const largestMultiKill =
     matchDetails[index]?.info.participants[0].largestMultiKill;
@@ -74,6 +76,7 @@ const MatchCard = ({ index }: any) => {
           <span className="lg:mt-0 mt-2">
             {durationMin}분 {durationSec}초
           </span>
+          <span className="mt-4 opacity-75">{timeAgo}</span>
         </div>
         <div className="rounded-full h-[70px] w-[70px] lg:h-[80px] lg:w-[80px] mr-8 overflow-hidden">
           <img
