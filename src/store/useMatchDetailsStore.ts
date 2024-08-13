@@ -18,6 +18,8 @@ interface Participant {
   item4: number;
   item5: number;
   championName: string;
+  totalDamageDealtToChampions: number;
+  totalDamageTaken: number;
   win: boolean;
 }
 
