@@ -87,7 +87,7 @@ const MatchCard = ({ index }: any) => {
             <span> {assists}</span>
           </div>
           <span className="text-xs text-gray-500 opacity-75">
-            {kdaTruncated}:1 평점
+            {deaths !== 0 ? kdaTruncated + ":1 평점" : "Perfect"}
           </span>
         </div>
         <span

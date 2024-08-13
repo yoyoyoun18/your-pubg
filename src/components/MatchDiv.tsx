@@ -23,7 +23,7 @@ function MatchDiv() {
       for (const matchId of matches) {
         try {
           const response = await axios.get(
-            `https://asia.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=RGAPI-7e3b0b0e-ba13-43b7-b70e-bf7e9795adf0`
+            `https://asia.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=RGAPI-8a6de799-4e13-4937-8806-be335c1f7cf0` // 1회용 api
           );
 
           const matchData = response.data;
