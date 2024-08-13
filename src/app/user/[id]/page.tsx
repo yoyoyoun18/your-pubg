@@ -48,7 +48,6 @@ const fetchRiotAccountDetail = async (puuid: string): Promise<RiotAccount> => {
       },
     }
   );
-  // console.log("data는" + data);
   return data;
 };
 
