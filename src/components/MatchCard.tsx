@@ -3,6 +3,15 @@ import useUserStore from "@/store/useUserStore";
 import React from "react";
 import DamageBar from "./DamageBar";
 
+function extractAfterUnderscore(text: string): string {
+  const underscoreIndex = text.indexOf("_");
+  if (underscoreIndex !== -1) {
+    return text.slice(underscoreIndex + 1);
+  } else {
+    return text;
+  }
+}
+
 function formatTimeAgo(timestamp: number): string {
   // 유닉스 시간을 받아와 현재시간으로부터 며칠전인지 계산해주는 함수
 
@@ -25,7 +34,9 @@ const MatchCard = ({ index }: any) => {
   const { matches } = useUserStore((state) => state.targetUser);
   const { matchDetails } = useMatchDetailsStore();
   const gameResult = matchDetails[index]?.info.participants[0].win;
-  const champion = matchDetails[index]?.info.participants[0].championName;
+  const champion = extractAfterUnderscore(
+    matchDetails[index]?.info.participants[0].championName
+  );
   const durationMin = (matchDetails[index]?.info.gameDuration / 60) | 0;
   const durationSec = matchDetails[index]?.info.gameDuration % 60;
   const kills = matchDetails[index]?.info.participants[0].kills;

@@ -43,10 +43,10 @@ function MatchDiv() {
     });
   }, [matchQueries]);
 
-  // useMatchDetailsStore.subscribe((state, prevState) => {
-  //   console.log("Previous state:", prevState);
-  //   console.log("Current state:", state);
-  // });
+  useMatchDetailsStore.subscribe((state, prevState) => {
+    console.log("Previous state:", prevState);
+    console.log("Current state:", state);
+  });
 
   return (
     <div className="w-full md:w-2/3">
