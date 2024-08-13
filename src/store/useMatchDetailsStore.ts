@@ -25,6 +25,7 @@ interface MatchInfo {
   gameId: string;
   participants: Participant[];
   gameDuration: number;
+  gameEndTimestamp: number;
 }
 
 interface MatchDetails {
