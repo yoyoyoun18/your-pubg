@@ -39,6 +39,7 @@ interface MatchDetailsStore {
   addMatchDetails: (details: MatchDetails) => void;
   removeMatchDetails: (gameId: string) => void;
   updateMatchDetails: (gameId: string, newDetails: MatchDetails) => void;
+  clearMatchDetails: () => void;
 }
 
 const useMatchDetailsStore = create<MatchDetailsStore>((set) => ({
@@ -54,7 +55,7 @@ const useMatchDetailsStore = create<MatchDetailsStore>((set) => ({
       }
       return state;
     }),
-
+  clearMatchDetails: () => set({ matchDetails: [] }),
   removeMatchDetails: (gameId) =>
     set((state) => ({
       matchDetails: state.matchDetails.filter(
