@@ -156,10 +156,10 @@ function Page() {
     }
   }, [accountError, accountDetailError, accountRankError]);
 
-  // useUserStore.subscribe((state, prevState) => {
-  //   console.log("Previous state:", prevState);
-  //   console.log("Current state:", state);
-  // });
+  useUserStore.subscribe((state, prevState) => {
+    console.log("Previous state:", prevState);
+    console.log("Current state:", state);
+  });
 
   if (isAccountLoading || isAccountDetailLoading || isAccountRankLoading) {
     return <div>Loading...</div>;
