@@ -1,64 +1,66 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import { useQueries } from "@tanstack/react-query";
 import MatchCard from "./MatchCard";
 import useUserStore from "@/store/useUserStore";
 import AddMatch from "./AddMatch";
 import useMatchDetailsStore from "@/store/useMatchDetailsStore";
 
-interface Participant {
-  puuid: string;
-  participantId: number;
-  summonerName: string;
-  championId: number;
-  teamId: number;
-}
-
 function MatchDiv() {
   const { puuid, matches } = useUserStore((state) => state.targetUser);
-  const { matchDetails, addMatchDetails } = useMatchDetailsStore();
-  const targetPuuid = puuid;
+  const { addMatchDetails, matchDetails, clearMatchDetails } =
+    useMatchDetailsStore();
 
-  useEffect(() => {
-    const fetchMatchDetails = async () => {
-      for (const matchId of matches) {
-        try {
-          const response = await axios.get(
-            `https://asia.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=RGAPI-8a6de799-4e13-4937-8806-be335c1f7cf0` // 1회용 api
-          );
-
-          const matchData = response.data;
-          const targetParticipant = matchData.info.participants.find(
-            (participant: Participant) => participant.puuid === targetPuuid
-          );
-
-          if (targetParticipant) {
-            // targetPuuid와 일치하는 참가자가 있는 경우에만 저장
-            addMatchDetails({
-              ...matchData,
-              info: {
-                ...matchData.info,
-                participants: [targetParticipant], // 타겟 참가자만 저장
-              },
-            });
-          }
-        } catch (error) {
-          console.error(`Error fetching match details for ${matchId}:`, error);
+  const matchQueries = useQueries({
+    queries: matches.map((matchId) => ({
+      queryKey: ["matchDetails", matchId],
+      queryFn: async () => {
+        const response = await fetch(
+          `/api/user/search/matchdetail?matchId=${matchId}&targetPuuid=${encodeURIComponent(
+            puuid
+          )}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch match details");
         }
-      }
-    };
-
-    fetchMatchDetails();
-  }, [matches, addMatchDetails]);
-
-  useMatchDetailsStore.subscribe((state, prevState) => {
-    console.log("Previous state:", prevState);
-    console.log("Current state:", state);
+        return response.json();
+      },
+      staleTime: Infinity,
+      cacheTime: 1000 * 180,
+    })),
   });
+
+  React.useEffect(() => {
+    clearMatchDetails();
+  }, [puuid, matches, clearMatchDetails]);
+
+  React.useEffect(() => {
+    matchQueries.forEach((query) => {
+      if (query.isSuccess && query.data) {
+        const matchId = query.data.metadata.matchId;
+        // console.log(query.data);
+        addMatchDetails(query.data);
+      }
+    });
+  }, [matchQueries]);
+
+  // useMatchDetailsStore.subscribe((state, prevState) => {
+  //   console.log("Previous state:", prevState);
+  //   console.log("Current state:", state);
+  // });
 
   return (
     <div className="w-full md:w-2/3">
-      {matches.map((a, i) => {
-        return <MatchCard key={i} index={i} />;
+      {matchQueries.map((query, i) => {
+        if (query.isLoading) return <div key={matches[i]}>Loading...</div>;
+        if (query.isError)
+          return (
+            <div key={matches[i]}>Error: {(query.error as Error).message}</div>
+          );
+        if (query.isSuccess && query.data) {
+          const matchId = query.data.metadata.matchId;
+          return <MatchCard key={matchId} index={i} />;
+        }
+        return null;
       })}
       <AddMatch />
     </div>
