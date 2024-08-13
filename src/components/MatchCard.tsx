@@ -1,6 +1,7 @@
 import useMatchDetailsStore from "@/store/useMatchDetailsStore";
 import useUserStore from "@/store/useUserStore";
 import React from "react";
+import DamageBar from "./DamageBar";
 
 function formatTimeAgo(timestamp: number): string {
   // 유닉스 시간을 받아와 현재시간으로부터 며칠전인지 계산해주는 함수
@@ -33,6 +34,10 @@ const MatchCard = ({ index }: any) => {
   const kda = (kills + assists) / deaths;
   const gameEndTimestamp = matchDetails[index]?.info.gameEndTimestamp;
   const timeAgo = formatTimeAgo(gameEndTimestamp);
+  const totalDamageDealtToChampions =
+    matchDetails[index]?.info.participants[0].totalDamageDealtToChampions;
+  const totalDamageTaken =
+    matchDetails[index]?.info.participants[0].totalDamageTaken;
   const kdaTruncated = parseFloat(kda.toFixed(2)); // 소수점 둘째자리에서 끊어주는 메서드
   const largestMultiKill =
     matchDetails[index]?.info.participants[0].largestMultiKill;
@@ -101,7 +106,7 @@ const MatchCard = ({ index }: any) => {
       </div>
 
       <div className="w-1/2 flex flex-row">
-        <div className="flex flex-col w-1/2 border-l border-gray-300 p-2 text-xs lg:text-sm">
+        <div className="flex flex-col justify-center w-1/3 border-l border-gray-300 p-2 text-xs lg:text-sm">
           <div className="w-full">
             <span>{kills} </span>/
             <span className="text-pink-500"> {deaths} </span>/
@@ -111,13 +116,23 @@ const MatchCard = ({ index }: any) => {
             {deaths !== 0 ? kdaTruncated + ":1 평점" : "Perfect"}
           </span>
         </div>
-        <span
-          className={`${
-            largestMultiKill === 0 || largestMultiKill === 1 ? "hidden" : "flex"
-          } bg-red-600 h-[25px] p-2 w-auto text-white rounded-2xl flex justify-center items-center text-xs`}
-        >
-          {multikills[largestMultiKill]}
-        </span>
+        <div className="w-1/3">
+          <DamageBar
+            totalDamageDealtToChampions={totalDamageDealtToChampions}
+            totalDamageTaken={totalDamageTaken}
+          />
+        </div>
+        <div className="p-4">
+          <span
+            className={`${
+              largestMultiKill === 0 || largestMultiKill === 1
+                ? "hidden"
+                : "flex"
+            } bg-red-600 h-[25px] p-2 w-auto text-white rounded-2xl flex justify-center items-center text-xs`}
+          >
+            {multikills[largestMultiKill]}
+          </span>
+        </div>
       </div>
     </div>
   );
