@@ -22,7 +22,7 @@ const DamageBar: React.FC<DamageBarProps> = ({
           <div className="flex justify-between items-center mb-0.5">
             <span className="text-2xs flex">
               <Sword className="w-4 h-4 mr-2" />{" "}
-              {totalDamageDealtToChampions.toLocaleString()}
+              {totalDamageDealtToChampions?.toLocaleString()}
             </span>
           </div>
           <div className="w-full bg-gray-700 rounded-sm h-1.5">
@@ -36,7 +36,7 @@ const DamageBar: React.FC<DamageBarProps> = ({
           <div className="flex justify-between items-center mb-0.5">
             <span className="text-2xs flex ">
               <Shield className="w-4 h-4 mr-2" />{" "}
-              {totalDamageTaken.toLocaleString()}
+              {totalDamageTaken?.toLocaleString()}
             </span>
           </div>
           <div className="w-full bg-gray-700 rounded-sm h-1.5">
