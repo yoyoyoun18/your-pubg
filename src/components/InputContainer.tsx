@@ -21,10 +21,10 @@ function InputContainer() {
     router.push(`/user/${gameName}${tagLine}`);
   };
 
-  useUserStore.subscribe((state, prevState) => {
-    console.log("Previous state:", prevState);
-    console.log("Current state:", state);
-  });
+  // useUserStore.subscribe((state, prevState) => {
+  //   console.log("Previous state:", prevState);
+  //   console.log("Current state:", state);
+  // });
 
   return (
     <div className="w-full h-96 bg-main-container-img bg-center bg-cover bg-no-repeat flex flex-col items-center justify-between">
