@@ -2,6 +2,24 @@ import useMatchDetailsStore from "@/store/useMatchDetailsStore";
 import useUserStore from "@/store/useUserStore";
 import React from "react";
 
+function formatTimeAgo(timestamp: number): string {
+  // 유닉스 시간을 받아와 현재시간으로부터 며칠전인지 계산해주는 함수
+
+  const now = new Date().getTime();
+  const diff = now - timestamp;
+
+  const seconds = diff / 1000;
+  const minutes = seconds / 60;
+  const hours = minutes / 60;
+  const days = hours / 24;
+
+  if (hours < 24) {
+    return `${Math.floor(hours)}시간 전`;
+  } else {
+    return `${Math.floor(days)}일 전`;
+  }
+}
+
 const MatchCard = ({ index }: any) => {
   const { matches } = useUserStore((state) => state.targetUser);
   const { matchDetails } = useMatchDetailsStore();
