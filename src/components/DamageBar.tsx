@@ -18,7 +18,7 @@ const DamageBar: React.FC<DamageBarProps> = ({
   return (
     <div className="w-full max-w-md bg-none rounded-md p-2 text-black text-xs">
       <div className="space-y-1">
-        <div>
+        <div className="mb-1">
           <div className="flex justify-between items-center mb-0.5">
             <span className="text-2xs flex">
               <Sword className="w-4 h-4 mr-2" />{" "}
