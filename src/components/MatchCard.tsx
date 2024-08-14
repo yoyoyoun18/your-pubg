@@ -14,7 +14,8 @@ function extractAfterUnderscore(text: string): string {
 }
 
 function formatTimeAgo(timestamp: number): string {
-  // 유닉스 시간을 받아와 현재시간으로부터 며칠전인지 계산해주는 함수
+  /* 유닉스 시간을 현재의 시간과 비교하여 몇 시간 혹은 며칠 전인지를 표기해주는 함수
+  24시간 이하의 시간만 n시간적으로 표기하고 그 이후는 n일 전 이런 식으로 표기 */
 
   const now = new Date().getTime();
   const diff = now - timestamp;
