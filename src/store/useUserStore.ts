@@ -42,9 +42,20 @@ const useUserStore = create<UserStoreState>()(
         matches: [],
       },
       setTargetUser: (newUser) =>
-        set((state) => ({
-          targetUser: { ...state.targetUser, ...newUser },
-        })),
+        set((state) => {
+          const updatedUser = { ...state.targetUser };
+          /*변경된 상태만을 업데이트하기위한 hasChanges라는 불리언 값과 비교용 반복문 작성  */
+          let hasChanges = false;
+
+          for (const [key, value] of Object.entries(newUser)) {
+            if (state.targetUser[key] !== value) {
+              updatedUser[key] = value;
+              hasChanges = true;
+            }
+          }
+
+          return hasChanges ? { targetUser: updatedUser } : state;
+        }),
     }),
     {
       name: "user-storage",
