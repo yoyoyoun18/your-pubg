@@ -51,7 +51,12 @@ function MatchDiv() {
   return (
     <div className="w-full md:w-2/3">
       {matchQueries.map((query, i) => {
-        if (query.isLoading) return <div key={matches[i]}>Loading...</div>;
+        if (query.isLoading)
+          return (
+            <div className="w-full flex justify-center">
+              <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
+            </div>
+          );
         if (query.isError)
           return (
             <div key={matches[i]}>Error: {(query.error as Error).message}</div>
