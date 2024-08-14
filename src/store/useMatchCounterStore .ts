@@ -7,7 +7,7 @@ interface MatchCounterState {
 }
 
 const useMatchCounterStore = create<MatchCounterState>((set) => ({
-  matchCount: 0,
+  matchCount: 1,
   increment: () => set((state) => ({ matchCount: state.matchCount + 1 })),
   reset: () => set({ matchCount: 0 }),
 }));
