@@ -4,9 +4,9 @@ import React from "react";
 import DamageBar from "./DamageBar";
 
 function extractAfterUnderscore(text: string): string {
-  const underscoreIndex = text.indexOf("_");
+  const underscoreIndex = text?.indexOf("_");
   if (underscoreIndex !== -1) {
-    return text.slice(underscoreIndex + 1);
+    return text?.slice(underscoreIndex + 1);
   } else {
     return text;
   }
