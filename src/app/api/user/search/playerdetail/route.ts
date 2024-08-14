@@ -4,6 +4,7 @@ import axios from "axios";
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const puuid = searchParams.get("puuid");
+  const matchCount = searchParams.get("matchCount");
 
   if (!puuid) {
     return NextResponse.json({ error: "Missing puuid" }, { status: 400 });
@@ -24,7 +25,7 @@ export async function GET(request: NextRequest) {
         {
           params: {
             start: 0,
-            count: 3,
+            count: matchCount,
             api_key: process.env.RIOT_API_KEY,
           },
         }

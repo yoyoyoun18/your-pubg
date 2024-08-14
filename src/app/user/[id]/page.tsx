@@ -9,6 +9,7 @@ import React, { useEffect } from "react";
 import useUserStore from "@/store/useUserStore";
 import AddMatch from "@/components/AddMatch";
 import MatchDiv from "@/components/MatchDiv";
+import useMatchCounterStore from "@/store/useMatchCounterStore ";
 
 interface RiotAccount {
   puuid: string;
@@ -39,12 +40,16 @@ const fetchRiotAccount = async (
   return data;
 };
 
-const fetchRiotAccountDetail = async (puuid: string): Promise<RiotAccount> => {
+const fetchRiotAccountDetail = async (
+  puuid: string,
+  matchCount: number
+): Promise<RiotAccount> => {
   const { data } = await axios.get<RiotAccount>(
     "/api/user/search/playerdetail",
     {
       params: {
         puuid,
+        matchCount,
       },
     }
   );
@@ -68,6 +73,7 @@ const fetchRiotAccountRankInfo = async (
 
 function Page() {
   const setTargetUser = useUserStore((state) => state.setTargetUser);
+  const { matchCount } = useMatchCounterStore();
   const {
     puuid,
     gameName,
@@ -99,8 +105,8 @@ function Page() {
     error: accountDetailError,
     isLoading: isAccountDetailLoading,
   } = useQuery<RiotAccount, Error>({
-    queryKey: ["riotAccountDetail", puuid],
-    queryFn: () => fetchRiotAccountDetail(puuid),
+    queryKey: ["riotAccountDetail", puuid, matchCount],
+    queryFn: () => fetchRiotAccountDetail(puuid, matchCount),
     enabled: !!puuid,
   });
 
