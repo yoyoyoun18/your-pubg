@@ -2,7 +2,7 @@ import useMatchCounterStore from "@/store/useMatchCounterStore ";
 import React from "react";
 
 function AddMatch() {
-  const { matchCount, increment } = useMatchCounterStore();
+  const { increment } = useMatchCounterStore();
 
   return (
     <div
