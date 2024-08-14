@@ -4,6 +4,7 @@ import React from "react";
 import DamageBar from "./DamageBar";
 
 function extractAfterUnderscore(text: string): string {
+  // 스킨 이름을 챔피언 이름으로 필터링해주는 함수 ex)Strawberry_Riven을 _ 이후의 것으로만 필터링하여 Riven으로
   const underscoreIndex = text?.indexOf("_");
   if (underscoreIndex !== -1) {
     return text?.slice(underscoreIndex + 1);
