@@ -168,7 +168,52 @@ function Page() {
   // });
 
   if (isAccountLoading || isAccountDetailLoading || isAccountRankLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex flex-col lg:flex-col justify-center items-center bg-[#EAEAEA] h-auto p-8 w-auto">
+        <div className="h-auto bg-white text-black w-[480px] md:w-[680px] lg:w-[1000px] mr-0 lg:mr-4 shadow-md mb-4 lg:mb-0 p-4 overflow-hidden font-SBAggro justify-center">
+          <div className="w-full bg-gray-800 p-4 grid grid-cols-12 items-center">
+            <div className="col-span-2">
+              <img
+                src={`https://ddragon.leagueoflegends.com/cdn/14.15.1/img/profileicon/${profileIconId}.png `}
+                className="w-full h-full object-cover rounded"
+                alt="Profile"
+              />
+            </div>
+            <div className="col-span-8 pl-4">
+              <h1 className="text-xl lg:text-2xl font-bold text-white">
+                {gameName || account?.gameName || "Loading..."}#{tagLine}
+              </h1>
+              <div className="flex space-x-2 mt-2">
+                <button className="bg-gray-700 text-sm lg:text-base text-white px-4 py-2 rounded">
+                  전적갱신
+                </button>
+                <button className="bg-gray-700 text-sm lg:text-base text-white px-4 py-2 rounded">
+                  즐겨찾기
+                </button>
+              </div>
+              <p className="text-gray-400 text-sm lg:text-base mt-2">
+                최근 업데이트: {revisionDate}
+              </p>
+            </div>
+            <div className="col-span-2 flex justify-end items-start text-right h-full text-white text-xs md:text-sm lg:text-base">
+              <p>
+                Level: <span className="text-yellow-400">{summonerLevel}</span>
+              </p>
+            </div>
+          </div>
+          <div className="w-full mt-4">
+            <div></div>
+          </div>
+          <div className="w-full flex flex-col md:flex-row mt-4 justify-center">
+            <div className="w-full md:w-1/3 mr-4">
+              <StatsCard />
+              <StatChartCard />
+            </div>
+            <MatchDiv />
+          </div>
+        </div>
+      </div>
+    );
   }
   if (accountError || accountDetailError || accountRankError)
     return <div>An error occurred:</div>;
